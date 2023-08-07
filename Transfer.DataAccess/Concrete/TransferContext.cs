@@ -6,16 +6,16 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
-using Transfer.DataAccess.Concrate.Configuration;
+using Transfer.DataAccess.Concrete.Configuration;
 using Transfer.Entity;
 
-namespace Transfer.DataAccess.Concrate
+namespace Transfer.DataAccess.Concrete
 {
     public class TransferContext : DbContext
     {
         public TransferContext()
         {
-
+            
         }
         public TransferContext(DbContextOptions<TransferContext> dbContextOptions) : base(dbContextOptions)
         {
@@ -28,7 +28,18 @@ namespace Transfer.DataAccess.Concrate
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+<<<<<<< HEAD:Transfer.DataAccess/Concrate/TransferContext.cs
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+=======
+
+            modelBuilder.Entity<Vehicle>().Property(x => x.ProviderId).HasValueGenerator<GuidGenerator>();
+            modelBuilder.Entity<Vehicle>().Property(x => x.Date).HasDefaultValueSql("GETDATE()");
+
+            modelBuilder.Entity<Vehicle>().OwnsOne(x => x.PickUpPoint);
+            modelBuilder.Entity<Vehicle>().OwnsOne(x => x.DropOffPoint);
+            modelBuilder.Entity<Vehicle>().OwnsOne(x => x.GenericData);
+            modelBuilder.Entity<Vehicle>().OwnsOne(x => x.ExtraServices);
+>>>>>>> 93142dee3406f2448a5d4b5d691f3cd5d7ec5b69:Transfer.DataAccess/Concrete/TransferContext.cs
             base.OnModelCreating(modelBuilder);
         }
 

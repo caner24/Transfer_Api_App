@@ -8,8 +8,7 @@
 
   <ItemGroup>
     <Folder Include="Abstract\" />
-    <Folder Include="Concrate\" />
-    <Folder Include="CrosCuttingConcerns\FluentValidation\" />
+    <Folder Include="Concrete\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -20,6 +19,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Transfer.DataAccess\Transfer.DataAccess.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Transfer.Entity\Transfer.Entity.csproj" />
   </ItemGroup>
 
 </Project>
