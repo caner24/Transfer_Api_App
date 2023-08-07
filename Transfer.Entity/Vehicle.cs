@@ -16,13 +16,9 @@ namespace Transfer.Entity
         public string Desciption { get; set; }
         public DateTime Date { get; set; }
         public string Description { get; set; }
-
         public PickUpPoint PickUpPoint { get; set; }
-
         public DropOffPoint DropOffPoint { get; set; }
-
         public GenericData GenericData { get; set; }
-
         public ExtraServices ExtraServices { get; set; }
 
     }

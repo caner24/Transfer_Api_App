@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Transfer.DataAccess.Concrate.Configuration
+namespace Transfer.DataAccess.Concrete.Configuration
 {
-    public class GuidGenarator : ValueGenerator<Guid>
+    public class GuidGenerator : ValueGenerator<Guid>
     {
         public override bool GeneratesTemporaryValues => false;
 

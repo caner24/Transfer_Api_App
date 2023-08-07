@@ -8,12 +8,15 @@
 
   <ItemGroup>
     <Folder Include="Abstract\" />
-    <Folder Include="Concrate\" />
-    <Folder Include="CrosCuttingConcerns\FluentValidation\" />
+    <Folder Include="Concrete\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="FluentValidation" Version="11.6.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Transfer.Entity\Transfer.Entity.csproj" />
   </ItemGroup>
 
 </Project>

@@ -5,16 +5,16 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
-using Transfer.DataAccess.Concrate.Configuration;
+using Transfer.DataAccess.Concrete.Configuration;
 using Transfer.Entity;
 
-namespace Transfer.DataAccess.Concrate
+namespace Transfer.DataAccess.Concrete
 {
     public class TransferContext : DbContext
     {
         public TransferContext()
         {
-
+            
         }
         public TransferContext(DbContextOptions<TransferContext> dbContextOptions) : base(dbContextOptions)
         {
@@ -30,7 +30,7 @@ namespace Transfer.DataAccess.Concrate
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
-            modelBuilder.Entity<Vehicle>().Property(x => x.ProviderId).HasValueGenerator<GuidGenarator>();
+            modelBuilder.Entity<Vehicle>().Property(x => x.ProviderId).HasValueGenerator<GuidGenerator>();
             modelBuilder.Entity<Vehicle>().Property(x => x.Date).HasDefaultValueSql("GETDATE()");
 
             modelBuilder.Entity<Vehicle>().OwnsOne(x => x.PickUpPoint);
