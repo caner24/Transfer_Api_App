@@ -7,7 +7,9 @@ using Transfer.Core.Entity;
 
 namespace Transfer.Entity
 {
-    public class DropOffPoint : IEntity
+    public class DropOffPoint : PointBase, IEntity
     {
+        public Guid VehicleId { get; set; }
+        public Vehicle Vehicle { get; set; }
     }
 }

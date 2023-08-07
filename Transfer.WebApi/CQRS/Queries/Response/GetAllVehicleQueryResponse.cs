@@ -1,17 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Transfer.Core.Entity;
+using Transfer.Entity;
+using Transfer.WebApi.Models;
 
-namespace Transfer.Entity
+namespace Transfer.WebApi.CQRS.Queries.Response
 {
-    public class Vehicle : IEntity
+    public class GetAllVehicleQueryResponse
     {
-
-        public Guid  Id { get; set; }
+        public Guid Id { get; set; }
         public Guid ProviderId { get; set; }
         public string Description { get; set; }
         public DateTime Date { get; set; }
@@ -21,10 +20,9 @@ namespace Transfer.Entity
         public int MaxPassenger { get; set; }
         public double TotalPrice { get; set; }
         public string TransferType { get; set; }
-        public PickUpPoint PickUpPoint { get; set; }
-        public DropOffPoint DropOffPoint { get; set; }
+        public PickUpPointViewModel PickupPoint { get; set; }
+        public DropOffPointViewModel DropOffPoint { get; set; }
         public GenericData GenericData { get; set; }
         public ExtraServices ExtraServices { get; set; }
-
     }
 }

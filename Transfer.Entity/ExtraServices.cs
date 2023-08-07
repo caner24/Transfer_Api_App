@@ -10,5 +10,7 @@ namespace Transfer.Entity
 {
     public class ExtraServices:IEntity
     {
+        public string ExtraServiceType { get; set; }
+        public double TotalPrice { get; set; }
     }
 }

@@ -9,5 +9,7 @@ namespace Transfer.Entity
 {
     public class GenericData : IEntity
     {
+        public string SearchCode { get; set; }
+        public string ResultKey { get; set; }
     }
 }
