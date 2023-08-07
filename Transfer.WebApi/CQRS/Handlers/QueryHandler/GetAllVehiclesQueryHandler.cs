@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Transfer.DataAccess.Concrate;
+using Transfer.DataAccess.Concrete;
 using Transfer.Entity;
 using Transfer.WebApi.CQRS.Queries.Request;
 using Transfer.WebApi.CQRS.Queries.Response;

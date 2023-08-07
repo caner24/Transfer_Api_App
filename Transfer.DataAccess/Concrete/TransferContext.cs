@@ -28,18 +28,8 @@ namespace Transfer.DataAccess.Concrete
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-<<<<<<< HEAD:Transfer.DataAccess/Concrate/TransferContext.cs
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
-=======
 
-            modelBuilder.Entity<Vehicle>().Property(x => x.ProviderId).HasValueGenerator<GuidGenerator>();
-            modelBuilder.Entity<Vehicle>().Property(x => x.Date).HasDefaultValueSql("GETDATE()");
-
-            modelBuilder.Entity<Vehicle>().OwnsOne(x => x.PickUpPoint);
-            modelBuilder.Entity<Vehicle>().OwnsOne(x => x.DropOffPoint);
-            modelBuilder.Entity<Vehicle>().OwnsOne(x => x.GenericData);
-            modelBuilder.Entity<Vehicle>().OwnsOne(x => x.ExtraServices);
->>>>>>> 93142dee3406f2448a5d4b5d691f3cd5d7ec5b69:Transfer.DataAccess/Concrete/TransferContext.cs
             base.OnModelCreating(modelBuilder);
         }
 

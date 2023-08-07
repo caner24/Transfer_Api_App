@@ -6,6 +6,7 @@ using System.Linq;
 using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
+using Transfer.DataAccess.Concrete.Configuration;
 using Transfer.Entity;
 
 namespace Transfer.DataAccess.Concrate.Configuration
@@ -16,7 +17,7 @@ namespace Transfer.DataAccess.Concrate.Configuration
         {
             //builder.HasOne(x => x.DropOffPoint).WithOne(x => x.Vehicle).HasForeignKey<DropOffPoint>(x => x.VehicleId);
             //builder.HasOne(x => x.PickUpPoint).WithOne(x => x.Vehicle).HasForeignKey<PickUpPoint>(x => x.VehicleId);
-            builder.Property(x => x.ProviderId).HasValueGenerator<GuidGenarator>();
+            builder.Property(x => x.ProviderId).HasValueGenerator<GuidGenerator>();
             builder.Property(x => x.Date).HasDefaultValueSql("GETDATE()");
             builder.OwnsOne(x => x.GenericData);
             builder.OwnsOne(x => x.ExtraServices);

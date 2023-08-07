@@ -25,14 +25,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Transfer.Business\Transfer.Business.csproj" />
-    <ProjectReference Include="..\Transfer.DataAccess\Transfer.DataAccess.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Folder Include="CQRS\Commands\Request\" />
     <Folder Include="CQRS\Commands\Response\" />
     <Folder Include="CQRS\Handlers\CommandHandler\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Transfer.DataAccess\Transfer.DataAccess.csproj" />
+    <ProjectReference Include="..\Transfer.Entity\Transfer.Entity.csproj" />
   </ItemGroup>
 
 </Project>
