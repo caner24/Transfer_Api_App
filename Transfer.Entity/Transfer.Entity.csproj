@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Transfer.Core\Transfer.Core.csproj" />
+  </ItemGroup>
+
 </Project>

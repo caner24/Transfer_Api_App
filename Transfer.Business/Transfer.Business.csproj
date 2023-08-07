@@ -9,6 +9,11 @@
   <ItemGroup>
     <Folder Include="Abstract\" />
     <Folder Include="Concrate\" />
+    <Folder Include="CrosCuttingConcerns\FluentValidation\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="11.6.0" />
   </ItemGroup>
 
 </Project>
