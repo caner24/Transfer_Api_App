@@ -29,6 +29,10 @@
     <Folder Include="CQRS\Commands\Request\" />
     <Folder Include="CQRS\Commands\Response\" />
     <Folder Include="CQRS\Handlers\CommandHandler\" />
+    <Folder Include="CQRS\Handlers\QueryHandler\" />
+    <Folder Include="CQRS\Queries\Request\" />
+    <Folder Include="CQRS\Queries\Response\" />
+    <Folder Include="Models\" />
   </ItemGroup>
 
   <ItemGroup>

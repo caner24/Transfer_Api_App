@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,9 +8,8 @@ using Transfer.Core.Entity;
 
 namespace Transfer.Entity
 {
-    public class DropOffPoint : PointBase, IEntity
+    public class User:IdentityUser,IEntity
     {
-        public Guid VehicleId { get; set; }
-        public Vehicle Vehicle { get; set; }
+        public List<Books> Books { get; set; }
     }
 }

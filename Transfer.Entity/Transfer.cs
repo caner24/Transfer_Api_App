@@ -7,10 +7,10 @@ using Transfer.Core.Entity;
 
 namespace Transfer.Entity
 {
-    public class PickUpPoint :PointBase, IEntity
+    public class Transfer:IEntity
     {
-        public Guid VehicleId { get; set; }
-        public Vehicle Vehicle { get; set; }
-
+        public double TotalAmount { get; set; }
+        public string BookingStatusType { get; set; }
+        public int VehicleId { get; set; }
     }
 }
