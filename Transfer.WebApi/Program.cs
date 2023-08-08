@@ -1,6 +1,8 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Serilog;
 using System.Reflection;
+using Transfer.DataAccess.Abstract;
 using Transfer.DataAccess.Concrate;
 using Transfer.DataAccess.Concrete;
 using Transfer.Entity;
@@ -8,11 +10,16 @@ using Transfer.WebApi.CQRS.Handlers.QueryHandler;
 using Transfer.WebApi.CQRS.Queries.Request;
 using Transfer.WebApi.CQRS.Queries.Response;
 
+Log.Logger = new LoggerConfiguration()
+    .WriteTo.Console()
+    .CreateLogger();
+
+
 var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
-
+Log.Information("Starting web host");
 builder.Services.AddControllers();
+builder.Host.UseSerilog((ctx, lc) => lc
+ .WriteTo.Console());
 
 
 builder.Services.AddEndpointsApiExplorer();
@@ -22,9 +29,6 @@ builder.Services.AddDbContext<TransferContext>(_ => _.UseSqlServer(builder.Confi
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
 builder.Services.AddTransient<IRequestHandler<GetAllVehicleQueryRequest, List<GetAllVehicleQueryResponse>>, GetAllVehiclesQueryHandler>();
 var app = builder.Build();
-
-
-
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

@@ -7,8 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Abstract\" />
-    <Folder Include="Concrete\" />
+    <Compile Remove="Concrete\**" />
+    <EmbeddedResource Remove="Concrete\**" />
+    <None Remove="Concrete\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -19,9 +20,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Transfer.DataAccess\Transfer.DataAccess.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Transfer.Entity\Transfer.Entity.csproj" />
   </ItemGroup>
 
