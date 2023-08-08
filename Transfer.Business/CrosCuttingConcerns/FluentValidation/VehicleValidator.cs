@@ -14,7 +14,21 @@ namespace Transfer.Business.CrosCuttingConcerns.FluentValidation
         public VehicleValidator() 
         {
             RuleFor(x => x.Id).NotNull();
-            //
+            RuleFor(x => x.ProviderId).NotNull();
+            RuleFor(x => x.Description).NotNull;
+            RuleFor(x => x.Date).NotNull;
+            RuleFor(x => x.ReturnDate).NotNull();
+            RuleFor(x => x.ImageUrl).NotNull();
+            RuleFor(x => x.MaxBaggage).NotNull();
+            RuleFor(x => x.MaxPassenger).NotNull();
+            RuleFor(x => x.TotalPrice).NotNull();
+            RuleFor(x => x.TransferType).NotNull();
+            RuleFor(x => x.PickUpPoint).NotNull();
+            RuleFor(x => x.DropOffPoint).NotNull();
+            RuleFor(x => x.GenericData).NotNull();
+            RuleFor(x => x.ExtraServices).NotNull();
+
+
         }
     }
 }
