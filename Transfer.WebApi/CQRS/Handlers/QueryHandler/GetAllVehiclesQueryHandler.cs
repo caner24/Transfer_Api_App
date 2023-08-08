@@ -8,7 +8,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Transfer.Business.Abstract;
-using Transfer.DataAccess.Concrate;
 using Transfer.DataAccess.Concrete;
 using Transfer.Entity;
 using Transfer.WebApi.CQRS.Queries.Request;

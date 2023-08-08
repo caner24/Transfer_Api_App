@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Transfer.Core.DataAcess;
-using Transfer.Core.DataAcess.EntityFramework;
+using Transfer.Core.DataAccess;
+using Transfer.Core.DataAccess.EntityFramework;
 using Transfer.DataAccess.Abstract;
 using Transfer.Entity;
 

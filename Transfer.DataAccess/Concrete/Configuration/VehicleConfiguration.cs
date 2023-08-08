@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using Transfer.DataAccess.Concrete.Configuration;
 using Transfer.Entity;
 
-namespace Transfer.DataAccess.Concrate.Configuration
+namespace Transfer.DataAccess.Concrete.Configuration
 {
     internal class VehicleConfiguration : IEntityTypeConfiguration<Vehicle>
     {

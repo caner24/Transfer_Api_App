@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Transfer.Core.Entity;
 
-namespace Transfer.Core.DataAcess
+namespace Transfer.Core.DataAccess
 {
     public class IQueryableRepository<T> where T : class,IEntity,new()
     {

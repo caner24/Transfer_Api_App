@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Transfer.Entity;
 
-namespace Transfer.DataAccess.Concrate.Configuration
+namespace Transfer.DataAccess.Concrete.Configuration
 {
     public class DropOffPointConfiguration : IEntityTypeConfiguration<DropOffPoint>
     {

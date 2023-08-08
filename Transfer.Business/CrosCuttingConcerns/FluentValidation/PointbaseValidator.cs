@@ -9,9 +9,9 @@ using Transfer.Entity;
 
 namespace Transfer.Business.CrosCuttingConcerns.FluentValidation
 {
-    public class PoinBaseValidator : AbstractValidator<PointBase>
+    public class PointBaseValidator : AbstractValidator<PointBase>
     {
-        public PoinBaseValidator()
+        public PointBaseValidator()
         {
             RuleFor(x => x.Id).NotNull();
             RuleFor(x => x.CountryCode).NotNull();

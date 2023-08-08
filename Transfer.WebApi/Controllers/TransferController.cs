@@ -2,11 +2,10 @@
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 using System.Text.Json;
-using Transfer.DataAccess.Concrate;
+using Transfer.DataAccess.Concrete;
 using MediatR;
 using Transfer.WebApi.CQRS.Queries.Response;
 using Transfer.WebApi.CQRS.Queries.Request;
-using Transfer.DataAccess.Concrete;
 
 namespace Transfer.WebApi.Controllers
 {

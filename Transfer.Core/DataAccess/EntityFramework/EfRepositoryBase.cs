@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Transfer.Core.Entity;
 
-namespace Transfer.Core.DataAcess.EntityFramework
+namespace Transfer.Core.DataAccess.EntityFramework
 {
     public class EfRepositoryBase<TContext, TEntity> : IEntityRepository<TEntity> where TEntity : class, IEntity, new() where TContext : DbContext, new()
     {

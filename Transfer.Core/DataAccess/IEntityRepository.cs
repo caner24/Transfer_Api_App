@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Transfer.Core.Entity;
 
-namespace Transfer.Core.DataAcess
+namespace Transfer.Core.DataAccess
 {
     public interface IEntityRepository<TEntity> where TEntity : class,IEntity,new()
     {

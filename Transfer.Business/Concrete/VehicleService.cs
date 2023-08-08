@@ -8,7 +8,7 @@ using Transfer.Business.Abstract;
 using Transfer.DataAccess.Abstract;
 using Transfer.Entity;
 
-namespace Transfer.Business.Concrate
+namespace Transfer.Business.Concrete
 {
     public class VehicleService : IVehicleService
     {

@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using Serilog;
 using System.Reflection;
 using Transfer.DataAccess.Abstract;
-using Transfer.DataAccess.Concrate;
 using Transfer.DataAccess.Concrete;
 using Transfer.Entity;
 using Transfer.WebApi.CQRS.Handlers.QueryHandler;
