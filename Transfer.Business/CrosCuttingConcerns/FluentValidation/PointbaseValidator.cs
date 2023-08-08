@@ -11,7 +11,7 @@ namespace Transfer.Business.CrosCuttingConcerns.FluentValidation
 {
     public class PoinBaseValidator : AbstractValidator<PointBase>
     {
-        public PointBaseValidator()
+        public PoinBaseValidator()
         {
             RuleFor(x => x.Id).NotNull();
             RuleFor(x => x.CountryCode).NotNull();
