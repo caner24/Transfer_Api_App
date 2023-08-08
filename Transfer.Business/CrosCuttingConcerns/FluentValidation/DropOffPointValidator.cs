@@ -13,8 +13,8 @@ namespace Transfer.Business.CrosCuttingConcerns.FluentValidation
     {
         public DropOffPointValidator()
         {
-            RuleFor(x => x.VehicleId).NotNull();
-            RuleFor(x => x.Vehicle).NotNull();
+            RuleFor(x => x.VehicleId).NotNull().WithMessage("VehicleId boş olamaz");
+            RuleFor(x => x.Vehicle).NotNull().WithMessage("Vehicle boş olamaz");
 
         }
     }

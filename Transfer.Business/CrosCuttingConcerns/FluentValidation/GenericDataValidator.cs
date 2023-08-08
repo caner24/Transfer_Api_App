@@ -13,8 +13,8 @@ namespace Transfer.Business.CrosCuttingConcerns.FluentValidation
     {
         public GenericDataValidator()
         {
-            RuleFor(x => x.SearchCode).NotNull();
-            RuleFor(x => x.ResultKey).NotNull();
+            RuleFor(x => x.SearchCode).NotNull().WithMessage("SearchCode boş olamaz");
+            RuleFor(x => x.ResultKey).NotNull().WithMessage("ResultKey boş olamaz");
            
         }
     }

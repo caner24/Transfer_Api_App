@@ -14,7 +14,7 @@ namespace Transfer.Business.CrosCuttingConcerns.FluentValidation
         public ExtraServicesValidator()
         {
             RuleFor(x => x.ExtraServiceType).NotNull();
-            RuleFor(x => x.TotalPrice).NotNull();
+            RuleFor(x => x.TotalPrice).NotNull().WithMessage("Total Price boş olamaz");
 
         }
     }

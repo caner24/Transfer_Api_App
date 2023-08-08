@@ -13,7 +13,7 @@ namespace Transfer.Business.CrosCuttingConcerns.FluentValidation
     {
         public PickUpPointValidator()
         {
-            RuleFor(x => x.VehicleId).NotNull();
+            RuleFor(x => x.VehicleId).NotNull().WithMessage("Id boş olamaz");
             RuleFor(x => x.Vehicle).NotNull();
 
         }

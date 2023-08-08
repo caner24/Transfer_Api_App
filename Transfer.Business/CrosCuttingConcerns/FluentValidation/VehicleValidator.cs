@@ -13,20 +13,20 @@ namespace Transfer.Business.CrosCuttingConcerns.FluentValidation
     {
         public VehicleValidator() 
         {
-            RuleFor(x => x.Id).NotNull();
-            RuleFor(x => x.ProviderId).NotNull();
-            RuleFor(x => x.Description).NotNull();
-            RuleFor(x => x.Date).NotNull();
-            RuleFor(x => x.ReturnDate).NotNull();
-            RuleFor(x => x.ImageUrl).NotNull();
-            RuleFor(x => x.MaxBaggage).NotNull();
-            RuleFor(x => x.MaxPassenger).NotNull();
-            RuleFor(x => x.TotalPrice).NotNull();
-            RuleFor(x => x.TransferType).NotNull();
-            RuleFor(x => x.PickUpPoint).NotNull();
-            RuleFor(x => x.DropOffPoint).NotNull();
-            RuleFor(x => x.GenericData).NotNull();
-            RuleFor(x => x.ExtraServices).NotNull();
+            RuleFor(x => x.Id).NotNull().WithMessage("ID boş olamaz");
+            RuleFor(x => x.ProviderId).NotNull().WithMessage("Provider ID boş olamaz");
+            RuleFor(x => x.Description).MaximumLength(300).WithMessage("Description boş olamaz");
+            RuleFor(x => x.Date).NotNull().WithMessage("Date boş olamaz");
+            RuleFor(x => x.ReturnDate).NotNull().WithMessage("Return Date boş olamaz");
+            RuleFor(x => x.ImageUrl).NotNull().WithMessage("ImageUrl boş olamaz");
+            RuleFor(x => x.MaxBaggage).NotNull().WithMessage("MaxBagage boş olamaz");
+            RuleFor(x => x.MaxPassenger).NotNull().WithMessage("MaxPassenger boş olamaz");
+            RuleFor(x => x.TotalPrice).NotNull().WithMessage("TotalPrice boş olamaz");
+            RuleFor(x => x.TransferType).NotNull().WithMessage("TransferType boş olamaz");
+            RuleFor(x => x.PickUpPoint).NotNull().WithMessage("PickUpPoint boş olamaz");
+            RuleFor(x => x.DropOffPoint).NotNull().WithMessage("DropOffPoint boş olamaz");
+            RuleFor(x => x.GenericData).NotNull().WithMessage("GenericData boş olamaz");
+            RuleFor(x => x.ExtraServices).NotNull().WithMessage("ExtraService boş olamaz");
 
 
         }
