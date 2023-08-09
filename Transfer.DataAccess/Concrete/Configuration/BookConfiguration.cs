@@ -15,7 +15,6 @@ namespace Transfer.DataAccess.Concrete.Configuration
         {
             builder.HasKey(x => x.Pnr);
             builder.Property(x => x.Pnr).ValueGeneratedOnAdd().HasValueGenerator<GuidGenerator>();
-            builder.OwnsOne(x => x.Transfers);
             builder.HasOne(x => x.User).WithMany(x => x.Books);
            
         }

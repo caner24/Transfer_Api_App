@@ -23,8 +23,4 @@
     <ProjectReference Include="..\Transfer.Entity\Transfer.Entity.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Abstract\" />
-  </ItemGroup>
-
 </Project>

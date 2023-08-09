@@ -11,12 +11,10 @@ namespace Transfer.Entity
     {
 
         public Guid Pnr { get; set; }
-        public int VehicleId { get; set; }
+        public string VehicleId { get; set; }
         public double TotalAmount { get; set; }
-        public string BookingStatusTytpe { get; set; }
-
+        public string BookingStatusType { get; set; }
         public int UserId { get; set; }
         public User User { get; set; }
-        public Transfers Transfers { get; set; }
     }
 }
