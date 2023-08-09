@@ -7,9 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="CQRS\Handlers\QueryHandler\" />
-    <Folder Include="CQRS\Queries\Request\" />
-    <Folder Include="CQRS\Queries\Response\" />
+    <Folder Include="CQRS\Handlers\QueryHandler\Response\" />
+    <Folder Include="CQRS\Handlers\QueryHandler\Request\" />
   </ItemGroup>
 
   <ItemGroup>
