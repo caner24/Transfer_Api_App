@@ -21,10 +21,8 @@ namespace Transfer.DataAccess.Concrete
         {
 
         }
-        public DbSet<Vehicle> Vehicle { get; set; }
-        public DbSet<ExtraServices> ExtraServices { get; set; }
-        public DbSet<GenericData> GenericData { get; set; } 
-        public DbSet<PointBase> PointBase { get; set; }
+        public DbSet<Books> Book { get; set; }
+        public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

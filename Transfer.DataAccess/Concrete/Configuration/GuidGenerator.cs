@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace Transfer.DataAccess.Concrete.Configuration
 {
-    public class GuidGenerator : ValueGenerator<Guid>
+    internal class GuidGenerator : ValueGenerator<Guid>
     {
         public override bool GeneratesTemporaryValues => false;
 
         public override Guid Next(EntityEntry entry)
         {
-            return Guid.NewGuid();
+           return Guid.NewGuid();
         }
     }
 }
