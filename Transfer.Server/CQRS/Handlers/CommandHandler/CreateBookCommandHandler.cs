@@ -17,15 +17,14 @@ namespace Transfer.Server.CQRS.Handlers.CommandHandler
     public class CreateBookCommandHandler : IRequestHandler<CreateBookRequest, CreateBookResponse>
     {
         private readonly IBookService _bookService;
-        private readonly IMapper _mapper;
-        public CreateBookCommandHandler(IBookService bookService, IMapper mapper)
+        public CreateBookCommandHandler(IBookService bookService)
         {
-            _mapper = mapper;
             _bookService = bookService;
 
         }
         public async Task<CreateBookResponse> Handle(CreateBookRequest request, CancellationToken cancellationToken)
         {
+
             try
             {
                 Log.Information($"{nameof(CreateBookRequest)} isteği oluşturuluyor . . . ");

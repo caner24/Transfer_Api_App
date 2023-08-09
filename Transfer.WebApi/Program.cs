@@ -7,7 +7,12 @@ using Transfer.Business.Concrete;
 using Transfer.DataAccess.Abstract;
 using Transfer.DataAccess.Concrete;
 using Transfer.Entity;
-
+using Transfer.Server.CQRS.Commands.Request;
+using Transfer.Server.CQRS.Commands.Response;
+using Transfer.Server.CQRS.Handlers.CommandHandler;
+using Transfer.Server.CQRS.Handlers.QueryHandler;
+using Transfer.Server.CQRS.Queries.Request;
+using Transfer.Server.CQRS.Queries.Response;
 
 Log.Logger = new LoggerConfiguration()
     .WriteTo.Console()
@@ -20,18 +25,22 @@ builder.Services.AddControllers();
 builder.Host.UseSerilog((ctx, lc) => lc
  .WriteTo.Console());
 
-
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(typeof(Program));
+builder.Services.AddSingleton<IBookDal, BookDal>();
+builder.Services.AddSingleton<IBookService, BookManager>();
+builder.Services.AddSingleton<IUserDal, UserDal>();
+builder.Services.AddSingleton<IUserService, UserManager>();
 builder.Services.AddDbContext<TransferContext>(_ => _.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
-builder.Services.AddTransient<IBookService, BookManager>();
-builder.Services.AddTransient<IBookDal, BookDal>();
-//builder.Services.AddTransient<IRequestHandler<GetAllVehicleQueryRequest, List<GetAllVehicleQueryResponse>>, GelAllBooksHandler>();
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.Load("Transfer.Server")));
+
+builder.Services.AddTransient<IRequestHandler<GetUserRequest, GetUserResponse>, GetUserQueryHandler>();
+builder.Services.AddTransient<IRequestHandler<CreateUserRequest, CreateUserResponse>, CreateUserCommandHandler>();
+builder.Services.AddTransient<IRequestHandler<CreateBookRequest, CreateBookResponse>, CreateBookCommandHandler>();
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -39,9 +48,6 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.MapControllers();
-
 app.Run();

@@ -10,25 +10,24 @@ using Transfer.Business.Abstract;
 using Transfer.Entity;
 using Transfer.Server.CQRS.Commands.Request;
 using Transfer.Server.CQRS.Commands.Response;
+using Transfer.Server.Mapper;
 
 namespace Transfer.Server.CQRS.Handlers.CommandHandler
 {
     public class CreateUserCommandHandler : IRequestHandler<CreateUserRequest, CreateUserResponse>
     {
         private readonly IUserService _userService;
-        private readonly IMapper _mapper;
-        public CreateUserCommandHandler(IUserService userService, IMapper mapper)
+        public CreateUserCommandHandler(IUserService userService)
         {
-            _mapper = mapper;
             _userService = userService;
-
         }
         public async Task<CreateUserResponse> Handle(CreateUserRequest request, CancellationToken cancellationToken)
         {
             try
             {
+                var mapper = MapperConfig.ConfigureMappings();
+                var user = mapper.Map<User>(request.userViewModel);
                 Log.Information($"{nameof(CreateUserRequest)} isteği oluşturuluyor . . . ");
-                var user = _mapper.Map<User>(request);
                 var addedUser = await _userService.CreateAsync(user);
                 return new CreateUserResponse() { IsCreated = "Created", UserId = addedUser.Id };
             }

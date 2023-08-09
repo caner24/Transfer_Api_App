@@ -6,9 +6,7 @@ using System.Threading.Tasks;
 
 namespace Transfer.Server.CQRS.Commands.Response
 {
-    public class CreateBookResponse
+    internal class BookValidateResponse
     {
-        public Guid Pnr { get; set; }
-        public string BookingStatusType { get; set; }
     }
 }
