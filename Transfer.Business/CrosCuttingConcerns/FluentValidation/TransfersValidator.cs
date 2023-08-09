@@ -8,9 +8,9 @@ using Transfer.Entity;
 
 namespace Transfer.Business.CrosCuttingConcerns.FluentValidation
 {
-    public class TransferValidator : AbstractValidator<Transfers>
+    public class TransfersValidator : AbstractValidator<Transfers>
     {
-        public TransferValidator()
+        public TransfersValidator()
         {
             RuleFor(x => x.TotalAmount).NotNull().WithMessage("Total Amount boş olamaz");
             RuleFor(x => x.BookingStatusType).NotNull().MaximumLength(250).WithMessage("Booking Status Type boş olamaz");
