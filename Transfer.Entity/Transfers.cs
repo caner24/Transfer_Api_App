@@ -7,7 +7,7 @@ using Transfer.Core.Entity;
 
 namespace Transfer.Entity
 {
-    public class Transfer:IEntity
+    public class Transfers:IEntity
     {
         public double TotalAmount { get; set; }
         public string BookingStatusType { get; set; }

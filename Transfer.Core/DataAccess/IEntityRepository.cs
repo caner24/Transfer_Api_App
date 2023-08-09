@@ -8,8 +8,12 @@ using Transfer.Core.Entity;
 
 namespace Transfer.Core.DataAccess
 {
-    public interface IEntityRepository<TEntity> where TEntity : class,IEntity,new()
+    public interface IEntityRepository<TEntity> where TEntity : class, IEntity, new()
     {
-        Task<List<TEntity>> GetAll(Expression<Func<TEntity, bool>> filter = null);
+        Task<List<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> filter = null);
+        Task<TEntity> CreateAsync(TEntity entity);
+        Task DeleteAsync(string Id);
+         void  Update(TEntity entity);
+        Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> filter);
     }
 }

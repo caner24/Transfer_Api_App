@@ -6,4 +6,15 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="CQRS\Handlers\QueryHandler\" />
+    <Folder Include="CQRS\Queries\Request\" />
+    <Folder Include="CQRS\Queries\Response\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="11.0.0" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.0" />
+  </ItemGroup>
+
 </Project>
