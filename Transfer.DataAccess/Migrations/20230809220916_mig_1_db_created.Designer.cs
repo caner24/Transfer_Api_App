@@ -12,7 +12,7 @@ using Transfer.DataAccess.Concrete;
 namespace Transfer.DataAccess.Migrations
 {
     [DbContext(typeof(TransferContext))]
-    [Migration("20230809132111_mig_1_db_created")]
+    [Migration("20230809220916_mig_1_db_created")]
     partial class mig1dbcreated
     {
         /// <inheritdoc />
@@ -27,11 +27,11 @@ namespace Transfer.DataAccess.Migrations
 
             modelBuilder.Entity("Transfer.Entity.Books", b =>
                 {
-                    b.Property<Guid>("Pnr")
+                    b.Property<Guid>("BookId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("BookingStatusType")
+                    b.Property<string>("Pnr")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -41,11 +41,7 @@ namespace Transfer.DataAccess.Migrations
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
-                    b.Property<string>("VehicleId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Pnr");
+                    b.HasKey("BookId");
 
                     b.HasIndex("UserId");
 
@@ -60,19 +56,27 @@ namespace Transfer.DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Email")
+                    b.Property<string>("FirstName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("GenderType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PassengerType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneArea")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Surname")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

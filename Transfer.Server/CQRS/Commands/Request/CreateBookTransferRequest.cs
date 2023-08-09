@@ -8,9 +8,12 @@ using Transfer.Server.CQRS.Commands.Response;
 
 namespace Transfer.Server.CQRS.Commands.Request
 {
-    public class CreateBookRequest:IRequest<CreateBookResponse>
+    public class CreateBookTransferRequest : IRequest<CreateBookTransferResponse>
     {
+        public string VehicleIds { get; set; }
         public int UserId { get; set; }
-        public string VehicleId { get; set; }
+        public int Adults { get; set; }
+        public int Children { get; set; }
+
     }
 }

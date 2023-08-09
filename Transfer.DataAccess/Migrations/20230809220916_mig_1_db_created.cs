@@ -17,10 +17,12 @@ namespace Transfer.DataAccess.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Surname = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PhoneArea = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PassengerType = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    GenderType = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -31,15 +33,14 @@ namespace Transfer.DataAccess.Migrations
                 name: "Book",
                 columns: table => new
                 {
-                    Pnr = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    VehicleId = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    BookId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Pnr = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     TotalAmount = table.Column<double>(type: "float", nullable: false),
-                    BookingStatusType = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     UserId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Book", x => x.Pnr);
+                    table.PrimaryKey("PK_Book", x => x.BookId);
                     table.ForeignKey(
                         name: "FK_Book_Users_UserId",
                         column: x => x.UserId,

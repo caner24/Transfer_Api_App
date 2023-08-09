@@ -13,7 +13,6 @@ namespace Transfer.Business.CrosCuttingConcerns.FluentValidation
         public BooksValidator()
         {
             RuleFor(x => x.Pnr).NotNull().WithMessage("pnr boş olamaz");
-            RuleFor(x => x.VehicleId).NotNull().WithMessage("VehicleId boş olamaz");
             RuleFor(x => x.TotalAmount).NotNull().WithMessage("TotalAmount boş olamaz");
 
             RuleFor(x => x.UserId).NotNull().WithMessage("UserId boş olamaz");

@@ -10,10 +10,9 @@ namespace Transfer.Entity
     public class Books:IEntity
     {
 
-        public Guid Pnr { get; set; }
-        public string VehicleId { get; set; }
+        public Guid BookId { get; set; }
+        public string Pnr { get; set; }
         public double TotalAmount { get; set; }
-        public string BookingStatusType { get; set; }
         public int UserId { get; set; }
         public User User { get; set; }
     }

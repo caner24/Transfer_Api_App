@@ -27,12 +27,10 @@ namespace Transfer.WebApi.Controllers
             _mediator = mediator;
         }
 
-        [HttpGet($"/{nameof(SearchOneWay)}")]
-        public async Task<IActionResult> SearchOneWay([FromQuery] GetUserRequest requestModel, string adults, string children, double pickUpPointLatitude
-           , double pickUpPointLongitude, double dropOffPointLatitude, DateTime date, int PageNumber, int PageSize, string SortType)
+        [HttpGet("SearchOneWay")]
+        public async Task<IActionResult> SearchOneWay([FromQuery] GetOneWayRequest requestModel)
         {
-
-            GetUserResponse allUsers = await _mediator.Send(requestModel);
+            List<GetOneWayResponse> allUsers = await _mediator.Send(requestModel);
             return Ok(allUsers);
         }
 
@@ -50,10 +48,11 @@ namespace Transfer.WebApi.Controllers
             CreateUserResponse createdUser = await _mediator.Send(requestModel);
             return Ok(createdUser);
         }
+
         [HttpPost($"/{nameof(CreateBooks)}")]
-        public async Task<IActionResult> CreateBooks([FromBody] CreateBookRequest requestModel)
+        public async Task<IActionResult> CreateBooks([FromBody] CreateBookTransferRequest requestModel)
         {
-            CreateBookResponse allUsers = await _mediator.Send(requestModel);
+            CreateBookTransferResponse allUsers = await _mediator.Send(requestModel);
             return Ok(allUsers);
         }
 

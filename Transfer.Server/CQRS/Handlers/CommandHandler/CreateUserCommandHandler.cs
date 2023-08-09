@@ -33,7 +33,7 @@ namespace Transfer.Server.CQRS.Handlers.CommandHandler
             }
             catch (Exception ex)
             {
-                Log.Error($" {nameof(CreateBookRequest)} isteği oluşturulurken bir hata meydana geldi :{ex.Message} . . .");
+                Log.Error($" {nameof(CreateUserRequest)} isteği oluşturulurken bir hata meydana geldi :{ex.Message} . . .");
                 return new CreateUserResponse() { IsCreated = "Non-Created" };
             }
             finally

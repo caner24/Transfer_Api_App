@@ -14,6 +14,7 @@ namespace Transfer.Server.Mapper
         public MyMappingProfile()
         {
             CreateMap<UserViewModel, User>();
+
         }
     }
 }
