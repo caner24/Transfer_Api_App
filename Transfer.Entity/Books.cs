@@ -14,6 +14,6 @@ namespace Transfer.Entity
         public double TotalAmount { get; set; }
         public string BookingStatusTytpe { get; set; }
         public User User { get; set; }
-        public Transfer Transfer { get; set; }
+        public Transfers Transfer { get; set; }
     }
 }
