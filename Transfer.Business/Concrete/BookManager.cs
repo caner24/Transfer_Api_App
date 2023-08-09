@@ -19,9 +19,9 @@ namespace Transfer.Business.Concrete
         {
             _bookDal = bookDal;
         }
-        public Task<Books> CreateAsync(Books entity)
+        public async Task<Books> CreateAsync(Books entity)
         {
-            throw new NotImplementedException();
+           return await _bookDal.CreateAsync(entity);
         }
 
         public Task DeleteAsync(string Id)

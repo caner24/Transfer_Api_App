@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Transfer.Core.DataAccess.EntityFramework;
+using Transfer.DataAccess.Abstract;
 using Transfer.Entity;
 
 namespace Transfer.DataAccess.Concrete
 {
-    public class BookDal:EfRepositoryBase<TransferContext,Books>
+    public class BookDal:EfRepositoryBase<TransferContext,Books>,IBookDal
     {
     }
 }

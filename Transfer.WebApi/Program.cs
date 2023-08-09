@@ -2,6 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 using System.Reflection;
+using Transfer.Business.Abstract;
+using Transfer.Business.Concrete;
 using Transfer.DataAccess.Abstract;
 using Transfer.DataAccess.Concrete;
 using Transfer.Entity;
@@ -24,6 +26,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.AddDbContext<TransferContext>(_ => _.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
+builder.Services.AddTransient<IBookService, BookManager>();
+builder.Services.AddTransient<IBookDal, BookDal>();
 //builder.Services.AddTransient<IRequestHandler<GetAllVehicleQueryRequest, List<GetAllVehicleQueryResponse>>, GelAllBooksHandler>();
 var app = builder.Build();
 

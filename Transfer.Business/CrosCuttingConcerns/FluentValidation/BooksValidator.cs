@@ -17,7 +17,7 @@ namespace Transfer.Business.CrosCuttingConcerns.FluentValidation
             RuleFor(x => x.TotalAmount).NotNull().WithMessage("TotalAmount boş olamaz");
             RuleFor(x => x.BookingStatusTytpe).NotNull().WithMessage("BookingStatusType boş olamaz");
             RuleFor(x => x.User).NotNull().WithMessage("User boş olamaz");
-            RuleFor(x => x.Transfer).NotNull().WithMessage("Transfer boş olamaz");
+            RuleFor(x => x.Transfers).NotNull().WithMessage("Transfer boş olamaz");
 
         }
     }
