@@ -31,7 +31,9 @@ namespace Transfer.Server.CQRS.Handlers.CommandHandler
         }
         public async Task<CreateBookTransferResponse> Handle(CreateBookTransferRequest request, CancellationToken cancellationToken)
         {
-            string jsonData = string.Format(@"
+            using (var httpClient =  _  )
+            {
+                string jsonData = string.Format(@"
             {{
                 ""VehicleIds"": [
                     ""{0}""
@@ -47,7 +49,7 @@ namespace Transfer.Server.CQRS.Handlers.CommandHandler
             }}", request.VehicleIds,request.Adults,request.Children);
 
             StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = await _transferClient.GetTransferClient().PostAsync("/transfer/book", content);
+            HttpResponseMessage response = await httpClient.PostAsync("/transfer/book", content);
             if (response.IsSuccessStatusCode)
             {
                 var returnedJson = await response.Content.ReadFromJsonAsync<CreateBookTransferResponse>();
@@ -58,7 +60,7 @@ namespace Transfer.Server.CQRS.Handlers.CommandHandler
             {
                 return new CreateBookTransferResponse() { BookingStatusType = "Error" + response.StatusCode.ToString() };
             }
-
+            }
 
         }
 

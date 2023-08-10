@@ -23,11 +23,10 @@ Log.Logger = new LoggerConfiguration()
 var builder = WebApplication.CreateBuilder(args);
 Log.Information("Starting web host");
 
-builder.Services.AddHttpClient<TransferClient>();
 builder.Host.UseSerilog((ctx, lc) => lc
  .WriteTo.Console());
-
-builder.Services.AddSingleton<TransferClient>();
+builder.Services.AddControllers();
+builder.Services.AddHttpClient<TransferClient>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -52,6 +51,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 app.Run();
