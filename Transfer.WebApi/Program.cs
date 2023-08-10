@@ -4,6 +4,7 @@ using Serilog;
 using System.Reflection;
 using Transfer.Business.Abstract;
 using Transfer.Business.Concrete;
+using Transfer.Client;
 using Transfer.DataAccess.Abstract;
 using Transfer.DataAccess.Concrete;
 using Transfer.Entity;
@@ -21,9 +22,12 @@ Log.Logger = new LoggerConfiguration()
 
 var builder = WebApplication.CreateBuilder(args);
 Log.Information("Starting web host");
-builder.Services.AddControllers();
+
+builder.Services.AddHttpClient<TransferClient>();
 builder.Host.UseSerilog((ctx, lc) => lc
  .WriteTo.Console());
+
+builder.Services.AddSingleton<TransferClient>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

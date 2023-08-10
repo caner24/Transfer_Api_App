@@ -27,6 +27,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Transfer.Business\Transfer.Business.csproj" />
+    <ProjectReference Include="..\Transfer.Client\Transfer.Client.csproj" />
     <ProjectReference Include="..\Transfer.DataAccess\Transfer.DataAccess.csproj" />
     <ProjectReference Include="..\Transfer.Entity\Transfer.Entity.csproj" />
     <ProjectReference Include="..\Transfer.Server\Transfer.Server.csproj" />
