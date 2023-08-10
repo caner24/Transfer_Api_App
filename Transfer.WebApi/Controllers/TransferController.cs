@@ -27,6 +27,13 @@ namespace Transfer.WebApi.Controllers
             _mediator = mediator;
         }
 
+        [HttpGet("GetBookDetail")]
+        public async Task<IActionResult> GetBookDetail([FromQuery] GetBookRequest requestModel)
+        {
+            GetBookResponse bookDetail = await _mediator.Send(requestModel);
+            return Ok(bookDetail);
+        }
+
         [HttpGet("SearchOneWay")]
         public async Task<IActionResult> SearchOneWay([FromQuery] GetOneWayRequest requestModel)
         {
