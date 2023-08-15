@@ -9,6 +9,7 @@ using Transfer.Server.CQRS.Queries.Response;
 using Transfer.Server.CQRS.Commands.Request;
 using Transfer.Server.CQRS.Commands.Response;
 using Transfer.Business.Abstract;
+using Transfer.Client.Response;
 
 namespace Transfer.WebApi.Controllers
 {
@@ -37,7 +38,7 @@ namespace Transfer.WebApi.Controllers
         [HttpGet("SearchOneWay")]
         public async Task<IActionResult> SearchOneWay([FromQuery] GetOneWayRequest requestModel)
         {
-            List<GetOneWayResponse> allUsers = await _mediator.Send(requestModel);
+            List<TransferServiceSearchResponse> allUsers = await _mediator.Send(requestModel);
             return Ok(allUsers);
         }
 
