@@ -1,4 +1,5 @@
 ﻿using System.Net.Http;
+using Transfer.Client.Request;
 using Transfer.Client.Response;
 using Transfer.Client.ResponseAlt;
 
@@ -42,5 +43,14 @@ namespace Transfer.Client
                      cancellationToken: CancellationToken.None
                      );
         }
+
+        public async Task<Root> PostBook(object bookDetail)
+        {
+            return await Post<Root>(
+                "/transfer/book",
+                bookDetail,
+                cancellationToken: CancellationToken.None   
+                );
+        } 
     }
 }

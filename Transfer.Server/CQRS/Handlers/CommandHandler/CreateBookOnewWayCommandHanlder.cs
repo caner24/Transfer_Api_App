@@ -10,13 +10,14 @@ using System.Text;
 using System.Threading.Tasks;
 using Transfer.Business.Abstract;
 using Transfer.Client;
+using Transfer.Client.Response;
 using Transfer.Entity;
 using Transfer.Server.CQRS.Commands.Request;
 using Transfer.Server.CQRS.Commands.Response;
 
 namespace Transfer.Server.CQRS.Handlers.CommandHandler
 {
-    public class CreateBookOnewWayCommandHanlder : IRequestHandler<CreateBookTransferRequest, CreateBookTransferResponse>
+    public class CreateBookOnewWayCommandHanlder : IRequestHandler<CreateBookTransferRequest, TransferServiceSearchResponse>
     {
         private readonly IBookService _bookService;
         private readonly IUserService _userService;
@@ -29,25 +30,11 @@ namespace Transfer.Server.CQRS.Handlers.CommandHandler
             _bookService = bookService;
 
         }
-        public async Task<CreateBookTransferResponse> Handle(CreateBookTransferRequest request, CancellationToken cancellationToken)
+        public async Task<TransferServiceSearchResponse> Handle(CreateBookTransferRequest request, CancellationToken cancellationToken)
         {
-            string jsonData = string.Format(@"
-            {{
-                ""VehicleIds"": [
-                    ""{0}""
-                ],
-                ""Adults"": {1},
-                ""Children"": {2},
-                ""Tags"": [
-                    {{
-                        ""key"": ""mock"",
-                        ""value"": ""server""
-                    }}
-                ]
-            }}", request.VehicleIds, request.Adults, request.Children);
-
-            StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = await _transferClient.GetTransferClient().PostAsync("/transfer/book", content);
+            
+            _bookService.CreateAsync
+            _transferClient.PostBook(request);
             if (response.IsSuccessStatusCode)
             {
                 var returnedJson = await response.Content.ReadFromJsonAsync<CreateBookTransferResponse>();
