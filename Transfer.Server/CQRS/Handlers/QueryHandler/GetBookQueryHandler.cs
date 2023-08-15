@@ -18,7 +18,7 @@ using Transfer.Server.CQRS.Queries.Response;
 
 namespace Transfer.Server.CQRS.Handlers.QueryHandler
 {
-    public class GetBookQueryHandler : IRequestHandler<GetBookRequest, GetBookResponse>
+    public class GetBookQueryHandler : IRequestHandler<GetBookRequest, Root>
     {
         private readonly TransferClient _transferClient;
         private readonly IUserService _userService;
@@ -43,7 +43,7 @@ namespace Transfer.Server.CQRS.Handlers.QueryHandler
             {
                 var user = await _userService.GetAsync(x => x.Id == pnr.UserId);
                 var response = await _transferClient.GetBook(pnr.Pnr, user.LastName);
-                _cacheManager.Add("GetBookResponse", response, 60);
+                _cacheManager.Add("GetBookResponse", response, 5);
                 return _cacheManager.Get<Root>("GetBookResponse");
             }
             throw new PnrNotFoundExpection($"Your searched pnr number (${request.Pnr}) didn't found.");

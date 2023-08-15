@@ -1,5 +1,7 @@
 ﻿using System.Net.Http;
 using Transfer.Client.Response;
+using Transfer.Client.ResponseAlt;
+
 namespace Transfer.Client
 {
     public class TransferClient : HttpBaseMethods

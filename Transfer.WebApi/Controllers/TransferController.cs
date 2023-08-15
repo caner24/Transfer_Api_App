@@ -10,6 +10,7 @@ using Transfer.Server.CQRS.Commands.Request;
 using Transfer.Server.CQRS.Commands.Response;
 using Transfer.Business.Abstract;
 using Transfer.Client.Response;
+using Transfer.Client.ResponseAlt;
 
 namespace Transfer.WebApi.Controllers
 {
@@ -31,7 +32,7 @@ namespace Transfer.WebApi.Controllers
         [HttpGet("GetBookDetail")]
         public async Task<IActionResult> GetBookDetail([FromQuery] GetBookRequest requestModel)
         {
-            GetBookResponse bookDetail = await _mediator.Send(requestModel);
+            Root bookDetail = await _mediator.Send(requestModel);
             return Ok(bookDetail);
         }
 

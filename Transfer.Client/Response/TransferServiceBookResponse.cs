@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Transfer.Client.Response;
 
-namespace Transfer.Client.Response
+namespace Transfer.Client.ResponseAlt
 {
     public class Contact
     {
