@@ -23,23 +23,22 @@ namespace Transfer.Server.CQRS.Handlers.CommandHandler
         }
         public async Task<CreateUserResponse> Handle(CreateUserRequest request, CancellationToken cancellationToken)
         {
-            try
-            {
-                var mapper = MapperConfig.ConfigureMappings();
-                var user = mapper.Map<User>(request.userViewModel);
-                Log.Information($"{nameof(CreateUserRequest)} isteği oluşturuluyor . . . ");
-                var addedUser = await _userService.CreateAsync(user);
-                return new CreateUserResponse() { IsCreated = "Created", UserId = addedUser.Id };
-            }
-            catch (Exception ex)
-            {
-                Log.Error($" {nameof(CreateUserRequest)} isteği oluşturulurken bir hata meydana geldi :{ex.Message} . . .");
-                return new CreateUserResponse() { IsCreated = "Non-Created" };
-            }
-            finally
-            {
-                Log.Information($"{nameof(CreateUserResponse)}  isteği sonlandırldı . . .");
-            }
+            //try
+            //{
+            var _mapper = MapperConfig.ConfigureMappings();
+            var user = _mapper.Map<User>(request);
+            var addedUser = await _userService.CreateAsync(user);
+            return new CreateUserResponse() { IsCreated = "Created", UserId = addedUser.Id };
+            //}
+            //catch (Exception ex)
+            //{
+            //    Log.Error($" {nameof(CreateUserRequest)} isteği oluşturulurken bir hata meydana geldi :{ex.Message} . . .");
+            //    return new CreateUserResponse() { IsCreated = "Non-Created" };
+            //}
+            //finally
+            //{
+            //    Log.Information($"{nameof(CreateUserResponse)}  isteği sonlandırldı . . .");
+            //}
         }
     }
 }

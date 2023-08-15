@@ -20,37 +20,43 @@ namespace Transfer.Client
             return _httpClient;
         }
 
-        public async Task<List<TransferServiceSearchResponse>> SearchOneWay()
+        public async Task<List<TransferServiceSearchOneWayResponse>> SearchOneWay(TransferServiceSearchOneWayRequest transferServiceSearchOneWayRequest)
         {
-            return await Get<List<TransferServiceSearchResponse>>(
-                     "transfer/search?adults=1&children=0&pickUpPointLatitude=41.0370014&pickUpPointLongitude=28.9763369&dropOffPointLatitude=41.2567349&dropOffPointLongitude=28.740408&date=2023-06-17T17:35:21",
+            return await Get<List<TransferServiceSearchOneWayResponse>>(
+                     $"transfer/search?adults={transferServiceSearchOneWayRequest.Adults}" +
+                     $"&children={transferServiceSearchOneWayRequest.Children}&" +
+                     $"pickUpPointLatitude={transferServiceSearchOneWayRequest.PickUpPointLatitude}" +
+                     $"&pickUpPointLongitude={transferServiceSearchOneWayRequest.PickUpPointLongitude}&" +
+                     $"dropOffPointLatitude={transferServiceSearchOneWayRequest.DropOffPointLatitude}" +
+                     $"&dropOffPointLongitude={transferServiceSearchOneWayRequest.DropOffPointLongitude}" +
+                     $"&date={transferServiceSearchOneWayRequest.Date}",
                      cancellationToken: CancellationToken.None
                      );
         }
-
-        public async Task<List<TransferServiceSearchResponse>> SearchRoundWay()
+        public async Task<List<TransferServiceSearchOneWayResponse>> SearchRoundWay(TransferServiceSerachRoundWayRequest transferServiceSearchRoundWayRequest)
         {
-            return await Get<List<TransferServiceSearchResponse>>(
-                     "transfer/search?adults=1&children=0&pickUpPointLatitude=41.0370014&pickUpPointLongitude=28.9763369&dropOffPointLatitude=41.2567349&dropOffPointLongitude=28.740408&date=2023-06-17T17:35:21",
+            return await Get<List<TransferServiceSearchOneWayResponse>>(
+                   $"transfer/search?adults={transferServiceSearchRoundWayRequest.Adults}" +
+                   $"&children={transferServiceSearchRoundWayRequest.Children}&" +
+                   $"pickUpPointLatitude={transferServiceSearchRoundWayRequest.PickUpPointLatitude}" +
+                   $"&pickUpPointLongitude={transferServiceSearchRoundWayRequest.PickUpPointLongitude}&" +
+                   $"dropOffPointLatitude={transferServiceSearchRoundWayRequest.DropOffPointLatitude}" +
+                   $"&dropOffPointLongitude={transferServiceSearchRoundWayRequest.DropOffPointLongitude}" +
+                   $"&date={transferServiceSearchRoundWayRequest.Date}" +
+                   $"&returnDate={transferServiceSearchRoundWayRequest.ReturnDate}",
+                   cancellationToken: CancellationToken.None
+                   );
+        }
+        public async Task<TransferServiceBookResponse> GetBook(TransferSerivceGetBookRequest transferSerivceGetBookRequest)
+        {
+            return await Get<TransferServiceBookResponse>(
+                     $"transfers/reservations/{transferSerivceGetBookRequest.Pnr}?LastName={transferSerivceGetBookRequest.LastName}",
                      cancellationToken: CancellationToken.None
                      );
         }
-
-        public async Task<Root> GetBook(string pnr,string lastName)
+        public async Task<TransferServiceBookResponse> CreateBook(TransferServiceCreateBookRequest transferServiceCreateBookRequest)
         {
-            return await Get<Root>(
-                     $"transfers/reservations/{pnr}?LastName={lastName}",
-                     cancellationToken: CancellationToken.None
-                     );
+            return await Post<TransferServiceBookResponse>("/transfer/book", transferServiceCreateBookRequest, cancellationToken: CancellationToken.None);
         }
-
-        public async Task<Root> PostBook(object bookDetail)
-        {
-            return await Post<Root>(
-                "/transfer/book",
-                bookDetail,
-                cancellationToken: CancellationToken.None   
-                );
-        } 
     }
 }

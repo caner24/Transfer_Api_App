@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 namespace Transfer.Client.Request
 {
    
-    public class Root
+    public class TransferServiceCreateBookRequest
     {
-        public List<string> VehicleIds { get; set; }
+        public string VehicleId { get; set; }
         public int Adults { get; set; }
         public int Children { get; set; }
         public List<Tag> Tags { get; set; }
@@ -20,7 +20,4 @@ namespace Transfer.Client.Request
         public string Key { get; set; }
         public string Value { get; set; }
     }
-
-
-
 }

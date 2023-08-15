@@ -17,6 +17,7 @@ using Transfer.Server.CQRS.Handlers.CommandHandler;
 using Transfer.Server.CQRS.Handlers.QueryHandler;
 using Transfer.Server.CQRS.Queries.Request;
 using Transfer.Server.CQRS.Queries.Response;
+using Transfer.Server.Mapper;
 using Transfer.WebApi.Extensions;
 
 Log.Logger = new LoggerConfiguration()
@@ -31,10 +32,9 @@ builder.Host.UseSerilog((ctx, lc) => lc
  .WriteTo.Console());
 builder.Services.AddControllers();
 builder.Services.AddHttpClient<TransferClient>();
-
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddAutoMapper(typeof(Program));
+
 builder.Services.AddSingleton<IBookDal, BookDal>();
 builder.Services.AddSingleton<IBookService, BookManager>();
 builder.Services.AddSingleton<IUserDal, UserDal>();
@@ -42,9 +42,13 @@ builder.Services.AddSingleton<IUserService, UserManager>();
 builder.Services.AddSingleton<ICacheManager, MemoryCacheManager>();
 builder.Services.AddDbContext<TransferContext>(_ => _.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.Load("Transfer.Server")));
+
 builder.Services.AddTransient<IRequestHandler<GetUserRequest, GetUserResponse>, GetUserQueryHandler>();
 builder.Services.AddTransient<IRequestHandler<CreateUserRequest, CreateUserResponse>, CreateUserCommandHandler>();
-builder.Services.AddTransient<IRequestHandler<CreateBookTransferRequest, CreateBookTransferResponse>, CreateBookOnewWayCommandHanlder>();
+builder.Services.AddTransient<IRequestHandler<CreateBookRequest, CreateBookResponse>, CreateBookCommandHandler>();
+builder.Services.AddTransient<IRequestHandler<GetOneWayRequest, List<GetOneWayResponse>>, GetOneWayQueryHandler>();
+builder.Services.AddTransient<IRequestHandler<GetRoundWayRequest, List<GetRoundWayResponse>>, GetRoundWayQueryHandler>();
+
 var app = builder.Build();
 
 

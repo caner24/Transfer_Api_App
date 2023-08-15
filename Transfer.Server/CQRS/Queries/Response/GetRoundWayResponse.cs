@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Transfer.Entity;
 
 namespace Transfer.Server.CQRS.Queries.Response
 {
-    public class GetUserResponse
+    public class GetRoundWayResponse:GetOneWayResponse
     {
-        public List<User> User { get; init; }
+        public DateTime ReturnDate { get; init; }
     }
 }

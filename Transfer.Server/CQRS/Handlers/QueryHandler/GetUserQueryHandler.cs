@@ -10,7 +10,6 @@ using Transfer.Entity;
 using Transfer.Server.CQRS.Queries.Request;
 using Transfer.Server.CQRS.Queries.Response;
 using Transfer.Server.Mapper;
-using Transfer.Server.Models;
 
 namespace Transfer.Server.CQRS.Handlers.QueryHandler
 {

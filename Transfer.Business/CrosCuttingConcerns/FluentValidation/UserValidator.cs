@@ -13,7 +13,6 @@ namespace Transfer.Business.CrosCuttingConcerns.FluentValidation
         public UserValidator()
         {
             RuleFor(x => x.Id).NotNull().WithMessage("Id boş olamaz");
-            RuleFor(x => x.PhoneNumber).NotNull().WithMessage("Phone number  boş olamaz");
 
 
         }

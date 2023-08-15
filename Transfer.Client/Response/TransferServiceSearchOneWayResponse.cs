@@ -27,7 +27,7 @@ namespace Transfer.Client.Response
         public string SearchCode { get; set; }
         public string ResultKey { get; set; }
     }
-    public class TransferServiceSearchResponse
+    public class TransferServiceSearchOneWayResponse
     {
         public string Id { get; set; }
         public string ProviderId { get; set; }
@@ -39,7 +39,7 @@ namespace Transfer.Client.Response
         public string TransferType { get; set; }
         public Point PickUpPoint { get; set; }
         public Point DropOffPoint { get; set; }
-        public string Date { get; set; }
+        public DateTime Date { get; set; }
         public GenericData GenericData { get; set; }
         public List<ExtraService> ExtraServices { get; set; }
     }

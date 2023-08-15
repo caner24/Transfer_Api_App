@@ -1,24 +1,23 @@
-﻿using MediatR;
+﻿using AutoMapper;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http.Json;
-using System.Text;
-using System.Text.Json;
-using System.Threading.Tasks;
 using Transfer.Business.Abstract;
 using Transfer.Client;
-using Transfer.Client.Response;
+using Transfer.Client.Request;
 using Transfer.Client.ResponseAlt;
 using Transfer.Core.CrosCuttingConcerns.Caching;
 using Transfer.Entity.Expections;
 using Transfer.Server.CQRS.Queries.Request;
 using Transfer.Server.CQRS.Queries.Response;
+using Transfer.Server.Mapper;
 
 namespace Transfer.Server.CQRS.Handlers.QueryHandler
 {
-    public class GetBookQueryHandler : IRequestHandler<GetBookRequest, Root>
+    public class GetBookQueryHandler : IRequestHandler<GetBookRequest, GetBookResponse>
     {
         private readonly TransferClient _transferClient;
         private readonly IUserService _userService;
@@ -32,22 +31,32 @@ namespace Transfer.Server.CQRS.Handlers.QueryHandler
             _userService = userService;
         }
 
-        public async Task<Root> Handle(GetBookRequest request, CancellationToken cancellationToken)
+        public async Task<GetBookResponse> Handle(GetBookRequest request, CancellationToken cancellationToken)
         {
+            var mapper = MapperConfig.ConfigureMappings();
             if (_cacheManager.IsAdd("GetBookResponse"))
             {
-                return _cacheManager.Get<Root>("GetBookResponse");
+                return _cacheManager.Get<GetBookResponse>("GetBookResponse");
             }
             var pnr = await _bookService.Table.Select(x => new { x.Pnr, x.UserId }).FirstOrDefaultAsync(x => x.Pnr == request.Pnr);
             if (pnr != null)
             {
                 var user = await _userService.GetAsync(x => x.Id == pnr.UserId);
-                var response = await _transferClient.GetBook(pnr.Pnr, user.LastName);
-                _cacheManager.Add("GetBookResponse", response, 5);
-                return _cacheManager.Get<Root>("GetBookResponse");
+                if (user.LastName == request.LastName)
+                {
+                    TransferSerivceGetBookRequest transferSerivceGetBookRequest = new TransferSerivceGetBookRequest()
+                    {
+                        LastName = request.LastName,
+                        Pnr = request.Pnr,
+                    };
+                    var response = await _transferClient.GetBook(transferSerivceGetBookRequest);
+                    var returnedResponse = mapper.Map<GetBookResponse>(response);
+                    _cacheManager.Add("GetBookResponse", returnedResponse, 60);
+                    return _cacheManager.Get<GetBookResponse>("GetBookResponse");
+                }
+                throw new PnrNotFoundExpection($"Your searched pnr number (${request.Pnr}) didn't found.");
             }
             throw new PnrNotFoundExpection($"Your searched pnr number (${request.Pnr}) didn't found.");
-
         }
     }
 }

@@ -9,62 +9,62 @@ namespace Transfer.Client.ResponseAlt
 {
     public class Contact
     {
-        public string email { get; set; }
-        public string firstName { get; set; }
-        public string genderType { get; set; }
-        public string lastName { get; set; }
-        public string phone { get; set; }
+        public string Email { get; set; }
+        public string FirstName { get; set; }
+        public string GenderType { get; set; }
+        public string LastName { get; set; }
+        public string Phone { get; set; }
     }
 
     public  class Point
     {
-        public string countryCode { get; set; }
-        public string latitude { get; set; }
-        public string longitude { get; set; }
-        public string name { get; set; }
-        public string placeId { get; set; }
-        public MeetingDetailPoint meetingDetailPoint { get; set; }
+        public string CountryCode { get; set; }
+        public string Latitude { get; set; }
+        public string Longitude { get; set; }
+        public string Name { get; set; }
+        public string PlaceId { get; set; }
+        public MeetingDetailPoint MeetingDetailPoint { get; set; }
     }
 
     public class MeetingDetailPoint
     {
-        public string meetingPointType { get; set; }
-        public string description { get; set; }
-        public string hotpointName { get; set; }
-        public string hotpointCode { get; set; }
-        public string arrivalTime { get; set; }
-        public string departureTime { get; set; }
-        public string flightNumber { get; set; }
+        public string MeetingPointType { get; set; }
+        public string Description { get; set; }
+        public string HotpointName { get; set; }
+        public string HotpointCode { get; set; }
+        public string ArrivalTime { get; set; }
+        public string DepartureTime { get; set; }
+        public string FlightNumber { get; set; }
     }
-    public class Root
+    public class TransferServiceBookResponse
     {
-        public string pnr { get; set; }
-        public Contact contact { get; set; }
-        public string bookingStatusType { get; set; }
-        public Transfers transfers { get; set; }
+        public string Pnr { get; set; }
+        public Contact Contact { get; set; }
+        public string BookingStatusType { get; set; }
+        public Transfers Transfers { get; set; }
     }
 
     public class Transfers
     {
-        public int totalAmount { get; set; }
-        public string bookingStatusType { get; set; }
-        public Vehicle vehicle { get; set; }
+        public double TotalAmount { get; set; }
+        public string BookingStatusType { get; set; }
+        public Vehicle Vehicle { get; set; }
     }
 
     public class Vehicle
     {
-        public string id { get; set; }
-        public string providerId { get; set; }
-        public string description { get; set; }
-        public string imageUrl { get; set; }
-        public string maxBaggage { get; set; }
-        public string maxPassenger { get; set; }
-        public double totalAmount { get; set; }
-        public string transferType { get; set; }
-        public Point pickUpPoint { get; set; }
-        public Point dropOffPoint { get; set; }
-        public DateTime date { get; set; }
-        public DateTime retunrDate { get; set; }
-        public List<ExtraService> extraServices { get; set; }
+        public string Id { get; set; }
+        public string ProviderId { get; set; }
+        public string Description { get; set; }
+        public string ImageUrl { get; set; }
+        public string MaxBaggage { get; set; }
+        public string MaxPassenger { get; set; }
+        public double TotalAmount { get; set; }
+        public string TransferType { get; set; }
+        public Point PickUpPoint { get; set; }
+        public Point DropOffPoint { get; set; }
+        public DateTime Date { get; set; }
+        public DateTime RetunrDate { get; set; }
+        public List<ExtraService> ExtraServices { get; set; }
     }
 }

@@ -13,7 +13,7 @@ namespace Transfer.Server.Mapper
         {
             var config = new MapperConfiguration(cfg =>
             {
-                cfg.AddProfile<MyMappingProfile>();
+                cfg.AddProfile<MappingProfile>();
             });
 
             return config.CreateMapper();

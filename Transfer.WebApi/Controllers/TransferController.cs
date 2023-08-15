@@ -11,6 +11,7 @@ using Transfer.Server.CQRS.Commands.Response;
 using Transfer.Business.Abstract;
 using Transfer.Client.Response;
 using Transfer.Client.ResponseAlt;
+using Transfer.Client.Request;
 
 namespace Transfer.WebApi.Controllers
 {
@@ -32,17 +33,23 @@ namespace Transfer.WebApi.Controllers
         [HttpGet("GetBookDetail")]
         public async Task<IActionResult> GetBookDetail([FromQuery] GetBookRequest requestModel)
         {
-            Root bookDetail = await _mediator.Send(requestModel);
+            GetBookResponse bookDetail = await _mediator.Send(requestModel);
             return Ok(bookDetail);
         }
 
         [HttpGet("SearchOneWay")]
-        public async Task<IActionResult> SearchOneWay([FromQuery] GetOneWayRequest requestModel)
+        public async Task<IActionResult> GetOneWay([FromQuery] GetOneWayRequest requestModel)
         {
-            List<TransferServiceSearchResponse> allUsers = await _mediator.Send(requestModel);
+            List<GetOneWayResponse> allUsers = await _mediator.Send(requestModel);
             return Ok(allUsers);
         }
 
+        [HttpGet("SearchRoundWay")]
+        public async Task<IActionResult> GetRoundWay([FromQuery] GetRoundWayRequest requestModel)
+        {
+            List<GetRoundWayResponse> allUsers = await _mediator.Send(requestModel);
+            return Ok(allUsers);
+        }
 
         [HttpGet($"/{nameof(GetUser)}")]
         public async Task<IActionResult> GetUser([FromQuery] GetUserRequest requestModel)
@@ -59,9 +66,9 @@ namespace Transfer.WebApi.Controllers
         }
 
         [HttpPost($"/{nameof(CreateBooks)}")]
-        public async Task<IActionResult> CreateBooks([FromBody] CreateBookTransferRequest requestModel)
+        public async Task<IActionResult> CreateBooks([FromBody] CreateBookRequest requestModel)
         {
-            CreateBookTransferResponse allUsers = await _mediator.Send(requestModel);
+            CreateBookResponse allUsers = await _mediator.Send(requestModel);
             return Ok(allUsers);
         }
 

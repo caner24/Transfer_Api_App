@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Transfer.Client.Response;
 
 namespace Transfer.Server.CQRS.Queries.Response
 {
@@ -15,10 +16,11 @@ namespace Transfer.Server.CQRS.Queries.Response
         public string MaxBaggage { get; set; }
         public string MaxPassenger { get; set; }
         public double TotalPrice { get; set; }
-        public string TransferPoint { get; set; }
-        public object PickUpPoint { get; set; }
-        public object DropOffPoint { get; set; }
-        public DateTime Date { get; set; }
-        public object GenericData { get; set; }
+        public string TransferType { get; set; }
+        public Point PickUpPoint { get; set; }
+        public Point DropOffPoint { get; set; }
+        public string Date { get; set; }
+        public GenericData GenericData { get; set; }
+        public List<ExtraService> ExtraServices { get; set; }
     }
 }

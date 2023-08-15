@@ -4,12 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Transfer.Client.Response;
 using Transfer.Server.CQRS.Queries.Response;
 
 namespace Transfer.Server.CQRS.Queries.Request
 {
-    public class GetOneWayRequest : IRequest<List<GetOneWayResponse>>
+    public class GetRoundWayRequest : IRequest<List<GetRoundWayResponse>>
     {
         public int Adults { get; init; }
         public int Children { get; init; }
@@ -21,5 +20,6 @@ namespace Transfer.Server.CQRS.Queries.Request
         public int PageNumber { get; init; }
         public int PageSize { get; init; }
         public string SortType { get; init; }
+        public DateTime ReturnDate { get; init; }
     }
 }

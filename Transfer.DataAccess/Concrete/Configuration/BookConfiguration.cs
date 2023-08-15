@@ -13,10 +13,10 @@ namespace Transfer.DataAccess.Concrete.Configuration
     {
         public void Configure(EntityTypeBuilder<Books> builder)
         {
-            builder.HasKey(x => x.BookId);
+            builder.HasKey(x => x.BookId);    
             builder.Property(x => x.BookId).ValueGeneratedOnAdd().HasValueGenerator<GuidGenerator>();
             builder.HasOne(x => x.User).WithMany(x => x.Books);
-           
+
         }
     }
 }
