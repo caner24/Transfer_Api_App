@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using AutoMapper;
+using MediatR;
 using Transfer.Business.Abstract;
 using Transfer.Entity;
 using Transfer.Server.CQRS.Commands.Request;

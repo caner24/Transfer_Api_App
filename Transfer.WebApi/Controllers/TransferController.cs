@@ -1,17 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using System.Text.Json.Serialization;
-using System.Text.Json;
-using Transfer.DataAccess.Concrete;
 using MediatR;
 using Transfer.Server.CQRS.Queries.Request;
-using Transfer.Server.CQRS.Queries.Response;
 using Transfer.Server.CQRS.Commands.Request;
 using Transfer.Server.CQRS.Commands.Response;
 using Transfer.Business.Abstract;
-using Transfer.Client.Response;
-using Transfer.Client.ResponseAlt;
-using Transfer.Client.Request;
+using Transfer.Application.Campaign.Queries.Response;
 
 namespace Transfer.WebApi.Controllers
 {

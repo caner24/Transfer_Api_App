@@ -1,12 +1,13 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Transfer.Application.Campaign.Queries.Response;
+using Transfer.Application.Campaign.Queries.Response.DataTransferObjects;
 using Transfer.Business.Abstract;
 using Transfer.Client;
 using Transfer.Client.Request;
 using Transfer.Core.CrosCuttingConcerns.Caching;
 using Transfer.Entity.Expections;
 using Transfer.Server.CQRS.Queries.Request;
-using Transfer.Server.CQRS.Queries.Response;
 using Transfer.Server.Mapping.AutoMapper;
 
 namespace Transfer.Server.CQRS.Handlers.QueryHandler

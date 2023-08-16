@@ -1,17 +1,10 @@
-﻿using AutoMapper;
-using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http.Json;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MediatR;
+using Transfer.Application.Campaign.Queries.Response;
+using Transfer.Application.Campaign.Queries.Response.DataTransferObjects;
 using Transfer.Client;
 using Transfer.Client.Request;
-using Transfer.Client.Response;
 using Transfer.Core.CrosCuttingConcerns.Caching;
 using Transfer.Server.CQRS.Queries.Request;
-using Transfer.Server.CQRS.Queries.Response;
 using Transfer.Server.Mapping.AutoMapper;
 
 namespace Transfer.Server.CQRS.Handlers.QueryHandler

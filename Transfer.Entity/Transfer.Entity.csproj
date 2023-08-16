@@ -14,4 +14,8 @@
     <ProjectReference Include="..\Transfer.Core\Transfer.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="DataTransferObjects\User\" />
+  </ItemGroup>
+
 </Project>

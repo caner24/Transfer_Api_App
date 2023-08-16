@@ -1,19 +1,9 @@
-﻿using AutoMapper;
+﻿
 using MediatR;
-using Moq;
-using Serilog;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Net.Http.Json;
-using System.Text;
-using System.Threading.Tasks;
 using Transfer.Application.Campaign.Email.Abstract;
 using Transfer.Business.Abstract;
 using Transfer.Client;
 using Transfer.Client.Request;
-using Transfer.Client.Response;
 using Transfer.Core.CrosCuttingConcerns.MailService;
 using Transfer.Core.Models;
 using Transfer.Entity;
