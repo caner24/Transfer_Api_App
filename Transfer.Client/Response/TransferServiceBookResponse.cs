@@ -64,7 +64,7 @@ namespace Transfer.Client.ResponseAlt
         public Point PickUpPoint { get; set; }
         public Point DropOffPoint { get; set; }
         public DateTime Date { get; set; }
-        public DateTime RetunrDate { get; set; }
+        public DateTime ReturnDate { get; set; }
         public List<ExtraService> ExtraServices { get; set; }
     }
 }
