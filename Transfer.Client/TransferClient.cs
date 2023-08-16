@@ -33,9 +33,9 @@ namespace Transfer.Client
                      cancellationToken: CancellationToken.None
                      );
         }
-        public async Task<List<TransferServiceSearchOneWayResponse>> SearchRoundWay(TransferServiceSerachRoundWayRequest transferServiceSearchRoundWayRequest)
+        public async Task<List<TransferServiceSearchRoundWayResponse>> SearchRoundWay(TransferServiceSerachRoundWayRequest transferServiceSearchRoundWayRequest)
         {
-            return await Get<List<TransferServiceSearchOneWayResponse>>(
+            return await Get<List<TransferServiceSearchRoundWayResponse>>(
                    $"transfer/search?adults={transferServiceSearchRoundWayRequest.Adults}" +
                    $"&children={transferServiceSearchRoundWayRequest.Children}&" +
                    $"pickUpPointLatitude={transferServiceSearchRoundWayRequest.PickUpPointLatitude}" +
