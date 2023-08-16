@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using Transfer.Business.Abstract;
+using Transfer.Core.CrosCuttingConcerns.MailService;
 using Transfer.Core.DataAccess.EntityFramework;
 using Transfer.DataAccess.Abstract;
 using Transfer.DataAccess.Concrete;

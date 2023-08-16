@@ -12,6 +12,8 @@ using Transfer.Business.Abstract;
 using Transfer.Client;
 using Transfer.Client.Request;
 using Transfer.Client.Response;
+using Transfer.Core.CrosCuttingConcerns.MailService;
+using Transfer.Core.Models;
 using Transfer.Entity;
 using Transfer.Entity.Expections;
 using Transfer.Server.CQRS.Commands.Request;
@@ -24,10 +26,13 @@ namespace Transfer.Server.CQRS.Handlers.CommandHandler
     {
         private readonly IBookService _bookService;
         private readonly IUserService _userService;
+        private readonly IEmailService _emailService;
         private readonly TransferClient _transferClient;
 
-        public CreateBookCommandHandler(TransferClient transferClient, IUserService userService, IBookService bookService)
+        public CreateBookCommandHandler(IEmailService emailService, TransferClient transferClient, IUserService userService, IBookService bookService)
+
         {
+            _emailService = emailService;
             _transferClient = transferClient;
             _userService = userService;
             _bookService = bookService;
@@ -46,6 +51,11 @@ namespace Transfer.Server.CQRS.Handlers.CommandHandler
                 var book = mapper.Map<Books>(bookResponse);
                 book.UserId = user.Id;
                 await _bookService.CreateAsync(book);
+
+
+                var message = new Message(new string[] { user.Email }, "Satın alımınız için teşekkürler :)", MailBody.MailBodyPnr(book.Pnr.ToString()), null);
+                await _emailService.SendEmailAsync(message);
+
                 var booksResponse = mapper.Map<CreateBookResponse>(bookResponse);
                 return booksResponse;
             }

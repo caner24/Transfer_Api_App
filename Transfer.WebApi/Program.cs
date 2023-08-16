@@ -2,12 +2,14 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
+using System.Configuration;
 using System.Reflection;
 using Transfer.Business.Abstract;
 using Transfer.Business.Concrete;
 using Transfer.Client;
 using Transfer.Core.CrosCuttingConcerns.Caching;
 using Transfer.Core.CrosCuttingConcerns.Caching.Microsoft;
+using Transfer.Core.CrosCuttingConcerns.MailService;
 using Transfer.DataAccess.Abstract;
 using Transfer.DataAccess.Concrete;
 using Transfer.Entity;
@@ -28,13 +30,22 @@ Log.Logger = new LoggerConfiguration()
 var builder = WebApplication.CreateBuilder(args);
 Log.Information("Starting web host");
 
+
+
+
 builder.Host.UseSerilog((ctx, lc) => lc
  .WriteTo.Console());
+
+
 builder.Services.AddControllers();
 builder.Services.AddHttpClient<TransferClient>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
+var emailConfig = builder.Configuration
+        .GetSection("EmailConfiguration")
+        .Get<EmailConfiguration>();
+builder.Services.AddSingleton(emailConfig);
+builder.Services.AddTransient<IEmailService, EmailManager>();
 builder.Services.AddSingleton<IBookDal, BookDal>();
 builder.Services.AddSingleton<IBookService, BookManager>();
 builder.Services.AddSingleton<IUserDal, UserDal>();
