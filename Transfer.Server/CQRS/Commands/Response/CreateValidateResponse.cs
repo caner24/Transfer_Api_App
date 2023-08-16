@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Transfer.Client.ResponseAlt
+namespace Transfer.Server.CQRS.Commands.Response
 {
     public class DropOffPoint
     {
@@ -38,7 +38,7 @@ namespace Transfer.Client.ResponseAlt
         public string PlaceId { get; set; }
     }
 
-    public class TransferServiceBookValidateResponse
+    public class CreateValidateResponse
     {
         public string Id { get; set; }
         public string ProviderId { get; set; }
@@ -48,12 +48,11 @@ namespace Transfer.Client.ResponseAlt
         public string MaxPassenger { get; set; }
         public double TotalPrice { get; set; }
         public string TransferType { get; set; }
-        public Point PickUpPoint { get; set; }
-        public Point DropOffPoint { get; set; }
-        public DateTime Date { get; set; }
+        public PickUpPoint PickUpPoint { get; set; }
+        public DropOffPoint DropOffPoint { get; set; }
+        public string Date { get; set; }
         public GenericData GenericData { get; set; }
         public List<ExtraService> ExtraServices { get; set; }
     }
-
 
 }
