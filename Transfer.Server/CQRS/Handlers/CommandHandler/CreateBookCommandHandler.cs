@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
+using Moq;
 using Serilog;
 using System;
 using System.Collections.Generic;
@@ -47,6 +48,18 @@ namespace Transfer.Server.CQRS.Handlers.CommandHandler
             {
 
                 var bookRequest = mapper.Map<TransferServiceCreateBookRequest>(request);
+
+                //var mockTransferClient = new Mock<bookRequest>();
+
+                //var expectedBookResponse = new BookResponse(); 
+                //mockTransferClient.Setup(client => client.CreateBook(It.IsAny<BookRequest>()))
+                //                  .ReturnsAsync(expectedBookResponse);
+
+                //// Now use the mock object in your testing code
+                //var bookRequest = new BookRequest(); // Replace with your book request object
+
+                //var bookResponse = await mockTransferClient.Object.CreateBook(bookRequest);
+
                 var bookResponse = await _transferClient.CreateBook(bookRequest);
                 var book = mapper.Map<Books>(bookResponse);
                 book.UserId = user.Id;

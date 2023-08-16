@@ -38,7 +38,13 @@ builder.Host.UseSerilog((ctx, lc) => lc
 
 
 builder.Services.AddControllers();
-builder.Services.AddHttpClient<TransferClient>();
+
+var uriConfig = builder.Configuration["TransferClientBaseUri:BaseUri"];
+
+builder.Services.AddHttpClient<TransferClient>(config =>
+config.BaseAddress = new Uri(uriConfig)
+);
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 var emailConfig = builder.Configuration

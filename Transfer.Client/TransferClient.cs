@@ -12,9 +12,7 @@ namespace Transfer.Client
         public TransferClient(HttpClient httpClient) : base(httpClient)
         {
             _httpClient = httpClient;
-            _httpClient.BaseAddress = new Uri("https://f311752a-e715-4445-be21-842206f699ec.mock.pstmn.io");
         }
-
         public HttpClient GetTransferClient()
         {
             return _httpClient;
