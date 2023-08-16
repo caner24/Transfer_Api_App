@@ -30,6 +30,10 @@ namespace Transfer.Server.Mapper
             CreateMap<GetRoundWayRequest, TransferServiceSerachRoundWayRequest>();
             CreateMap<TransferServiceSearchRoundWayResponse, GetRoundWayResponse>();
 
+            CreateMap<CreateValidateRequest, TransferServiceBookValidateRequest>();
+            CreateMap<TransferServiceBookValidateResponse, CreateValidateResponse>();
+
+
             CreateMap<TransferServiceBookResponse, Books>()
       .ForMember(x => x.VehicleIds, y => y.MapFrom(x => x.Transfers.Vehicle.Id));
         }

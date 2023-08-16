@@ -71,6 +71,13 @@ namespace Transfer.WebApi.Controllers
             CreateBookResponse allUsers = await _mediator.Send(requestModel);
             return Ok(allUsers);
         }
+  
+        [HttpPost($"/{nameof(CreateBookValidate)}")]
+        public async Task<IActionResult> CreateBookValidate([FromBody] CreateValidateRequest requestModel)
+        {
+            CreateValidateResponse allUsers = await _mediator.Send(requestModel);
+            return Ok(allUsers);
+        }
 
     }
 }

@@ -46,6 +46,7 @@ builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.Loa
 builder.Services.AddTransient<IRequestHandler<GetUserRequest, GetUserResponse>, GetUserQueryHandler>();
 builder.Services.AddTransient<IRequestHandler<CreateUserRequest, CreateUserResponse>, CreateUserCommandHandler>();
 builder.Services.AddTransient<IRequestHandler<CreateBookRequest, CreateBookResponse>, CreateBookCommandHandler>();
+builder.Services.AddTransient<IRequestHandler<CreateValidateRequest, CreateValidateResponse>, CreateValidationCommandHandler>();
 builder.Services.AddTransient<IRequestHandler<GetOneWayRequest, List<GetOneWayResponse>>, GetOneWayQueryHandler>();
 builder.Services.AddTransient<IRequestHandler<GetRoundWayRequest, List<GetRoundWayResponse>>, GetRoundWayQueryHandler>();
 
