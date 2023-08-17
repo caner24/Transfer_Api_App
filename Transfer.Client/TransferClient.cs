@@ -1,4 +1,5 @@
 ﻿using System.Net.Http;
+using Transfer.Client.Extensions;
 using Transfer.Client.Request;
 using Transfer.Client.Response;
 using Transfer.Client.ResponseAlt;
@@ -20,35 +21,20 @@ namespace Transfer.Client
 
         public async Task<List<TransferServiceSearchOneWayResponse>> SearchOneWay(TransferServiceSearchOneWayRequest transferServiceSearchOneWayRequest)
         {
-            return await Get<List<TransferServiceSearchOneWayResponse>>(
-                     $"transfer/search?adults={transferServiceSearchOneWayRequest.Adults}" +
-                     $"&children={transferServiceSearchOneWayRequest.Children}&" +
-                     $"pickUpPointLatitude={transferServiceSearchOneWayRequest.PickUpPointLatitude}" +
-                     $"&pickUpPointLongitude={transferServiceSearchOneWayRequest.PickUpPointLongitude}&" +
-                     $"dropOffPointLatitude={transferServiceSearchOneWayRequest.DropOffPointLatitude}" +
-                     $"&dropOffPointLongitude={transferServiceSearchOneWayRequest.DropOffPointLongitude}" +
-                     $"&date={transferServiceSearchOneWayRequest.Date}",
+            return await Get<List<TransferServiceSearchOneWayResponse>>(TransferServiceRequestQueryStringExtensions.TransferServiceOneWayRequesttQueryString(transferServiceSearchOneWayRequest),
                      cancellationToken: CancellationToken.None
                      );
         }
         public async Task<List<TransferServiceSearchRoundWayResponse>> SearchRoundWay(TransferServiceSerachRoundWayRequest transferServiceSearchRoundWayRequest)
         {
-            return await Get<List<TransferServiceSearchRoundWayResponse>>(
-                   $"transfer/search?adults={transferServiceSearchRoundWayRequest.Adults}" +
-                   $"&children={transferServiceSearchRoundWayRequest.Children}&" +
-                   $"pickUpPointLatitude={transferServiceSearchRoundWayRequest.PickUpPointLatitude}" +
-                   $"&pickUpPointLongitude={transferServiceSearchRoundWayRequest.PickUpPointLongitude}&" +
-                   $"dropOffPointLatitude={transferServiceSearchRoundWayRequest.DropOffPointLatitude}" +
-                   $"&dropOffPointLongitude={transferServiceSearchRoundWayRequest.DropOffPointLongitude}" +
-                   $"&date={transferServiceSearchRoundWayRequest.Date}" +
-                   $"&returnDate={transferServiceSearchRoundWayRequest.ReturnDate}",
+            return await Get<List<TransferServiceSearchRoundWayResponse>>(TransferServiceRequestQueryStringExtensions.TransferServiceOneWayRequesttQueryString(transferServiceSearchRoundWayRequest),
                    cancellationToken: CancellationToken.None
                    );
         }
         public async Task<TransferServiceBookResponse> GetBook(TransferSerivceGetBookRequest transferSerivceGetBookRequest)
         {
             return await Get<TransferServiceBookResponse>(
-                     $"transfers/reservations/{transferSerivceGetBookRequest.Pnr}?LastName={transferSerivceGetBookRequest.LastName}",
+                TransferServiceRequestQueryStringExtensions.TransferServiceGetBookRequestQueryString(transferSerivceGetBookRequest),
                      cancellationToken: CancellationToken.None
                      );
         }
