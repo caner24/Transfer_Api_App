@@ -1,10 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MediatR;
 using Transfer.Server.CQRS.Queries.Request;
-using Transfer.Server.CQRS.Commands.Request;
 using Transfer.Server.CQRS.Commands.Response;
 using Transfer.Business.Abstract;
 using Transfer.Application.Campaign.Queries.Response;
+using Transfer.Application.Transfer.Commands.Request.DataTransferObjects;
+using Transfer.Application.Transfer.ActionFilters;
 
 namespace Transfer.WebApi.Controllers
 {
@@ -52,25 +53,21 @@ namespace Transfer.WebApi.Controllers
         }
 
         [HttpPost($"/{nameof(CreateUser)}")]
-        public async Task<IActionResult> CreateUser([FromBody] CreateUserRequest requestModel)
+        [ValidationFilter]
+        public async Task<IActionResult> CreateUser([FromBody] CreateUserRequestDto requestModel)
         {
             CreateUserResponse createdUser = await _mediator.Send(requestModel);
             return Ok(createdUser);
         }
 
         [HttpPost($"/{nameof(CreateBooks)}")]
-        public async Task<IActionResult> CreateBooks([FromBody] CreateBookRequest requestModel)
+        [ValidationFilter]
+        public async Task<IActionResult> CreateBooks([FromBody] CreateBookRequestDto requestModel)
         {
             CreateBookResponse allUsers = await _mediator.Send(requestModel);
             return Ok(allUsers);
         }
   
-        [HttpPost($"/{nameof(CreateBookValidate)}")]
-        public async Task<IActionResult> CreateBookValidate([FromBody] CreateValidateRequest requestModel)
-        {
-            CreateValidateResponse allUsers = await _mediator.Send(requestModel);
-            return Ok(allUsers);
-        }
 
     }
 }

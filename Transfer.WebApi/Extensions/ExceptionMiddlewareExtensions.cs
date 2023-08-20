@@ -5,7 +5,7 @@ using Transfer.Entity.Expections;
 
 namespace Transfer.WebApi.Extensions
 {
-    public static class ExpectionMiddlewareExtensions
+    public static class ExceptionMiddlewareExtensions
     {
         public static void ConfigureExpectionHandler(this WebApplication app)
         {

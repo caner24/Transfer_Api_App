@@ -43,9 +43,9 @@ namespace Transfer.Client
             return await Post<TransferServiceBookResponse>("/transfer/book", transferServiceCreateBookRequest, cancellationToken: CancellationToken.None);
         }
 
-        public async Task<TransferServiceBookResponse> Validate(TransferServiceBookValidateRequest transferServiceValidateRequest)
+        public async Task<TransferServiceBookValidateResponse> Validate(TransferServiceBookValidateRequest transferServiceValidateRequest)
         {
-            return await Post<TransferServiceBookResponse>("/transfer/validate", transferServiceValidateRequest, cancellationToken: CancellationToken.None);
+            return await Post<TransferServiceBookValidateResponse>("/transfer/validate", transferServiceValidateRequest, cancellationToken: CancellationToken.None);
         }
     }
 }

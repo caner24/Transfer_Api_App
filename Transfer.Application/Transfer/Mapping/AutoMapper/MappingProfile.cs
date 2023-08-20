@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Transfer.Application.Campaign.Queries.Response;
 using Transfer.Application.Campaign.Queries.Response.DataTransferObjects;
+using Transfer.Application.Transfer.Commands.Request.DataTransferObjects;
 using Transfer.Client.Request;
 using Transfer.Client.Response;
 using Transfer.Client.ResponseAlt;
@@ -17,6 +18,8 @@ namespace Transfer.Server.Mapping.AutoMapper
         {
             CreateMap<CreateUserRequest, User>();
 
+            CreateMap<CreateBookRequestDto, TransferServiceBookValidateRequest>();
+
             CreateMap<CreateBookRequest, TransferServiceCreateBookRequest>();
             CreateMap<TransferServiceBookResponse, CreateBookResponse>();
 
@@ -26,7 +29,6 @@ namespace Transfer.Server.Mapping.AutoMapper
             CreateMap<GetRoundWayRequest, TransferServiceSerachRoundWayRequest>();
             CreateMap<TransferServiceSearchRoundWayResponse, GetRoundWayResponse>();
 
-            CreateMap<CreateValidateRequest, TransferServiceBookValidateRequest>();
             CreateMap<TransferServiceBookValidateResponse, CreateValidateResponse>();
 
 

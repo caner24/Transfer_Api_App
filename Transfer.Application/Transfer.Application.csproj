@@ -7,10 +7,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Transfer\Queries\Request\DataTransferObjects\**" />
+    <EmbeddedResource Remove="Transfer\Queries\Request\DataTransferObjects\**" />
+    <None Remove="Transfer\Queries\Request\DataTransferObjects\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="12.0.1" />
     <PackageReference Include="FluentValidation" Version="11.5.1" />
     <PackageReference Include="MailKit" Version="4.1.0" />
     <PackageReference Include="MediatR" Version="12.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
     <PackageReference Include="MimeKit" Version="4.1.0" />
   </ItemGroup>
 
@@ -19,11 +26,6 @@
     <ProjectReference Include="..\Transfer.Core\Transfer.Core.csproj" />
     <ProjectReference Include="..\Transfer.DataAccess\Transfer.Data.csproj" />
     <ProjectReference Include="..\Transfer.Entity\Transfer.Entity.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Campaign\Queries\Request\DataTransferObjects\" />
-    <Folder Include="Campaign\Validator\FluentValidation\RequestValidator\" />
   </ItemGroup>
 
 </Project>
