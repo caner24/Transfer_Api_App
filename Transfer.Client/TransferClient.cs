@@ -21,20 +21,20 @@ namespace Transfer.Client
 
         public async Task<List<TransferServiceSearchOneWayResponse>> SearchOneWay(TransferServiceSearchOneWayRequest transferServiceSearchOneWayRequest)
         {
-            return await Get<List<TransferServiceSearchOneWayResponse>>(TransferServiceRequestQueryStringExtensions.TransferServiceOneWayRequesttQueryString(transferServiceSearchOneWayRequest),
+            return await Get<List<TransferServiceSearchOneWayResponse>>("transfer/search?" + TransferServiceRequestQueryStringExtensions.ToQueryStringLower(transferServiceSearchOneWayRequest),
                      cancellationToken: CancellationToken.None
                      );
         }
         public async Task<List<TransferServiceSearchRoundWayResponse>> SearchRoundWay(TransferServiceSerachRoundWayRequest transferServiceSearchRoundWayRequest)
         {
-            return await Get<List<TransferServiceSearchRoundWayResponse>>(TransferServiceRequestQueryStringExtensions.TransferServiceOneWayRequesttQueryString(transferServiceSearchRoundWayRequest),
+            return await Get<List<TransferServiceSearchRoundWayResponse>>("transfer/search?" + TransferServiceRequestQueryStringExtensions.ToQueryStringLower(transferServiceSearchRoundWayRequest),
                    cancellationToken: CancellationToken.None
                    );
         }
         public async Task<TransferServiceBookResponse> GetBook(TransferSerivceGetBookRequest transferSerivceGetBookRequest)
         {
             return await Get<TransferServiceBookResponse>(
-                TransferServiceRequestQueryStringExtensions.TransferServiceGetBookRequestQueryString(transferSerivceGetBookRequest),
+               TransferServiceRequestQueryStringExtensions.TransferServiceGetBookRequestQueryString(transferSerivceGetBookRequest),
                      cancellationToken: CancellationToken.None
                      );
         }

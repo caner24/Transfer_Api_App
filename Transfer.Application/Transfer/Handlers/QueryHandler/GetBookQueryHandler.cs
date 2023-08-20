@@ -17,11 +17,9 @@ namespace Transfer.Server.CQRS.Handlers.QueryHandler
         private readonly TransferClient _transferClient;
         private readonly IUserService _userService;
         private readonly IBookService _bookService;
-        private readonly ICacheManager _cacheManager;
-        public GetBookQueryHandler(IBookService bookService, ICacheManager cacheManager, TransferClient transferClient, IUserService userService)
+        public GetBookQueryHandler(IBookService bookService, TransferClient transferClient, IUserService userService)
         {
             _bookService = bookService;
-            _cacheManager = cacheManager;
             _transferClient = transferClient;
             _userService = userService;
         }
@@ -29,10 +27,7 @@ namespace Transfer.Server.CQRS.Handlers.QueryHandler
         public async Task<GetBookResponse> Handle(GetBookRequest request, CancellationToken cancellationToken)
         {
             var mapper = MapperConfig.ConfigureMappings();
-            if (_cacheManager.IsAdd("GetBookResponse"))
-            {
-                return _cacheManager.Get<GetBookResponse>("GetBookResponse");
-            }
+
             var pnr = await _bookService.Table.Select(x => new { x.Pnr, x.UserId }).FirstOrDefaultAsync(x => x.Pnr == request.Pnr);
             if (pnr != null)
             {
@@ -46,8 +41,7 @@ namespace Transfer.Server.CQRS.Handlers.QueryHandler
                     };
                     var response = await _transferClient.GetBook(transferSerivceGetBookRequest);
                     var returnedResponse = mapper.Map<GetBookResponse>(response);
-                    _cacheManager.Add("GetBookResponse", returnedResponse, 60);
-                    return _cacheManager.Get<GetBookResponse>("GetBookResponse");
+                    return returnedResponse;
                 }
                 throw new PnrNotFoundExpection($"Your searched pnr number (${request.Pnr}) didn't found.");
             }

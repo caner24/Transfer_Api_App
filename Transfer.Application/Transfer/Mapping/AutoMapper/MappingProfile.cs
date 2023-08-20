@@ -19,12 +19,15 @@ namespace Transfer.Server.Mapping.AutoMapper
             CreateMap<CreateUserRequest, User>();
 
             CreateMap<CreateBookRequestDto, TransferServiceBookValidateRequest>();
+            CreateMap<CreateBookRequestDto, TransferServiceCreateBookRequest>();
 
             CreateMap<CreateBookRequest, TransferServiceCreateBookRequest>();
             CreateMap<TransferServiceBookResponse, CreateBookResponse>();
 
             CreateMap<GetOneWayRequest, TransferServiceSearchOneWayRequest>();
             CreateMap<TransferServiceSearchOneWayResponse, GetOneWayResponse>();
+
+            CreateMap<TransferServiceBookResponse, GetBookResponse>();
 
             CreateMap<GetRoundWayRequest, TransferServiceSerachRoundWayRequest>();
             CreateMap<TransferServiceSearchRoundWayResponse, GetRoundWayResponse>();

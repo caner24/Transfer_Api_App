@@ -10,35 +10,25 @@ namespace Transfer.Client.Extensions
 {
     public static class TransferServiceRequestQueryStringExtensions
     {
-        public static string TransferServiceOneWayRequesttQueryString(TransferServiceSearchOneWayRequest transferServiceSearchOneWayRequest)
+        public static string ToQueryStringLower(this object obj)
         {
-            return
-                     $"transfer/search?adults={transferServiceSearchOneWayRequest.Adults}" +
-                     $"&children={transferServiceSearchOneWayRequest.Children}&" +
-                     $"pickUpPointLatitude={transferServiceSearchOneWayRequest.PickUpPointLatitude}" +
-                     $"&pickUpPointLongitude={transferServiceSearchOneWayRequest.PickUpPointLongitude}&" +
-                     $"dropOffPointLatitude={transferServiceSearchOneWayRequest.DropOffPointLatitude}" +
-                     $"&dropOffPointLongitude={transferServiceSearchOneWayRequest.DropOffPointLongitude}" +
-                     $"&date={transferServiceSearchOneWayRequest.Date}";
-        }
-        public static string TransferServiceRoundWayRequestQueryString(TransferServiceSerachRoundWayRequest transferServiceSearchRoundWayRequest)
-        {
-            return
-                   $"transfer/search?adults={transferServiceSearchRoundWayRequest.Adults}" +
-                   $"&children={transferServiceSearchRoundWayRequest.Children}&" +
-                   $"pickUpPointLatitude={transferServiceSearchRoundWayRequest.PickUpPointLatitude}" +
-                   $"&pickUpPointLongitude={transferServiceSearchRoundWayRequest.PickUpPointLongitude}&" +
-                   $"dropOffPointLatitude={transferServiceSearchRoundWayRequest.DropOffPointLatitude}" +
-                   $"&dropOffPointLongitude={transferServiceSearchRoundWayRequest.DropOffPointLongitude}" +
-                   $"&date={transferServiceSearchRoundWayRequest.Date}" +
-                   $"&returnDate={transferServiceSearchRoundWayRequest.ReturnDate}";
-        }
+            var list = new List<string>();
 
+            var objType = obj.GetType();
+
+            var props = objType.GetProperties().Where(p => p.GetValue(obj) != null).ToArray();
+
+            foreach (var p in props)
+            {
+                var query = $"{p.Name.ToLower()}={Uri.EscapeDataString(p.GetValue(obj).ToString())}";
+                list.Add(query);
+            }
+            return string.Join("&", list);
+        }
         public static string TransferServiceGetBookRequestQueryString(TransferSerivceGetBookRequest transferServiceGetBookRequest)
         {
             return
                     $"transfers/reservations/{transferServiceGetBookRequest.Pnr}?LastName={transferServiceGetBookRequest.LastName}";
         }
-
     }
 }
