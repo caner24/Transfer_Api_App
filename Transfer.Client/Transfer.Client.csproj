@@ -15,4 +15,8 @@
     <Folder Include="Response\DatTransferObjects\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Transfer.Core\Transfer.Core.csproj" />
+  </ItemGroup>
+
 </Project>

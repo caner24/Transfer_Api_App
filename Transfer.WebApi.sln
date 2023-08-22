@@ -15,6 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Transfer.Client", "Transfer
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Transfer.Application", "Transfer.Application\Transfer.Application.csproj", "{1126A3BA-BDB2-4B3D-86A4-0621ECF20708}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Transfer.WebApi.Tests", "Transfer.WebApi.Tests\Transfer.WebApi.Tests.csproj", "{43DD853C-520D-4CE2-A33D-1F7BE52F9DC6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{1126A3BA-BDB2-4B3D-86A4-0621ECF20708}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1126A3BA-BDB2-4B3D-86A4-0621ECF20708}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1126A3BA-BDB2-4B3D-86A4-0621ECF20708}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43DD853C-520D-4CE2-A33D-1F7BE52F9DC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43DD853C-520D-4CE2-A33D-1F7BE52F9DC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43DD853C-520D-4CE2-A33D-1F7BE52F9DC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43DD853C-520D-4CE2-A33D-1F7BE52F9DC6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

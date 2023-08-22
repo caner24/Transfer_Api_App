@@ -1,14 +1,18 @@
 ﻿using MediatR;
 using Transfer.Application.Campaign.Queries.Response;
-using Transfer.Application.Campaign.Queries.Response.DataTransferObjects;
 using Transfer.Client;
 using Transfer.Client.Request;
+using Transfer.Core.CrosCuttingConcerns.Aspects.PostSharp.CacheAspetcs;
+using Transfer.Core.CrosCuttingConcerns.Aspects.PostSharp.LogAspects;
 using Transfer.Core.CrosCuttingConcerns.Caching;
+using Transfer.Core.CrosCuttingConcerns.Caching.Microsoft;
+using Transfer.Core.CrosCuttingConcerns.Logging.NLog;
 using Transfer.Server.CQRS.Queries.Request;
 using Transfer.Server.Mapping.AutoMapper;
 
 namespace Transfer.Server.CQRS.Handlers.QueryHandler
 {
+
     public class GetOneWayQueryHandler : IRequestHandler<GetOneWayRequest, List<GetOneWayResponse>>
     {
         private readonly ICacheManager _cacheManager;
@@ -18,13 +22,12 @@ namespace Transfer.Server.CQRS.Handlers.QueryHandler
             _transferClient = transferClient;
             _cacheManager = cacheManager;
         }
+
+        [CacheAspect(typeof(MemoryCacheManager))]
+        [LogAspect(typeof(LogManager))]
         public async Task<List<GetOneWayResponse>> Handle(GetOneWayRequest request, CancellationToken cancellationToken)
         {
             var mapper = MapperConfig.ConfigureMappings();
-            if (_cacheManager.IsAdd("GetOneWayResponse"))
-            {
-                return _cacheManager.Get<List<GetOneWayResponse>>("GetOneWayResponse");
-            }
             TransferServiceSearchOneWayRequest transferServiceSearchOneWayRequest = new TransferServiceSearchOneWayRequest()
             {
                 Adults = request.Adults,
@@ -40,8 +43,7 @@ namespace Transfer.Server.CQRS.Handlers.QueryHandler
             };
             var oneWayResponse = await _transferClient.SearchOneWay(transferServiceSearchOneWayRequest);
             List<GetOneWayResponse> response = oneWayResponse.Select(item => mapper.Map<GetOneWayResponse>(item)).ToList();
-            _cacheManager.Add("GetOneWayResponse", response, 60);
-            return _cacheManager.Get<List<GetOneWayResponse>>("GetOneWayResponse");
+            return response;
         }
     }
 }

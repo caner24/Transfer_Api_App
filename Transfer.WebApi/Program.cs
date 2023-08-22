@@ -1,6 +1,7 @@
 ﻿using FluentValidation.AspNetCore;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Hosting;
 using Serilog;
 using System.Reflection;
 using Transfer.Application.Campaign.Email.Abstract;
@@ -14,6 +15,8 @@ using Transfer.Business.Concrete;
 using Transfer.Client;
 using Transfer.Core.CrosCuttingConcerns.Caching;
 using Transfer.Core.CrosCuttingConcerns.Caching.Microsoft;
+using Transfer.Core.CrosCuttingConcerns.Logging;
+using Transfer.Core.CrosCuttingConcerns.Logging.NLog;
 using Transfer.Core.CrosCuttingConcerns.MailService;
 using Transfer.DataAccess.Abstract;
 using Transfer.DataAccess.Concrete;
@@ -31,8 +34,6 @@ Log.Logger = new LoggerConfiguration()
 
 var builder = WebApplication.CreateBuilder(args);
 Log.Information("Starting web host");
-
-
 
 
 builder.Host.UseSerilog((ctx, lc) => lc
@@ -64,6 +65,7 @@ builder.Services.AddTransient<IEmailService, EmailManager>();
 builder.Services.AddSingleton<IBookDal, BookDal>();
 builder.Services.AddSingleton<IBookService, BookManager>();
 builder.Services.AddSingleton<IUserDal, UserDal>();
+builder.Services.AddSingleton<ILogManager, LogManager>();
 builder.Services.AddSingleton<IUserService, UserManager>();
 builder.Services.AddSingleton<ICacheManager, MemoryCacheManager>();
 builder.Services.AddDbContext<TransferContext>(_ => _.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));

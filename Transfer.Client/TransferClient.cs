@@ -3,6 +3,10 @@ using Transfer.Client.Extensions;
 using Transfer.Client.Request;
 using Transfer.Client.Response;
 using Transfer.Client.ResponseAlt;
+using Transfer.Core.CrosCuttingConcerns.Aspects.PostSharp.CacheAspetcs;
+using Transfer.Core.CrosCuttingConcerns.Aspects.PostSharp.LogAspects;
+using Transfer.Core.CrosCuttingConcerns.Caching.Microsoft;
+using Transfer.Core.CrosCuttingConcerns.Logging.NLog;
 
 namespace Transfer.Client
 {

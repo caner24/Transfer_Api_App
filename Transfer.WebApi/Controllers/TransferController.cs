@@ -6,6 +6,10 @@ using Transfer.Business.Abstract;
 using Transfer.Application.Campaign.Queries.Response;
 using Transfer.Application.Transfer.Commands.Request.DataTransferObjects;
 using Transfer.Application.Transfer.ActionFilters;
+using Transfer.Core.CrosCuttingConcerns.Aspects.PostSharp.CacheAspetcs;
+using Transfer.Core.CrosCuttingConcerns.Aspects.PostSharp.LogAspects;
+using Transfer.Core.CrosCuttingConcerns.Caching.Microsoft;
+using Transfer.Core.CrosCuttingConcerns.Logging.NLog;
 
 namespace Transfer.WebApi.Controllers
 {
@@ -30,6 +34,7 @@ namespace Transfer.WebApi.Controllers
             GetBookResponse bookDetail = await _mediator.Send(requestModel);
             return Ok(bookDetail);
         }
+
 
         [HttpGet("SearchOneWay")]
         public async Task<IActionResult> GetOneWay([FromQuery] GetOneWayRequest requestModel)
