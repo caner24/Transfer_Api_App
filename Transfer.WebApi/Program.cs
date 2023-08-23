@@ -2,13 +2,12 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
+using PostSharp.Patterns.Caching.Backends;
+using PostSharp.Patterns.Caching;
 using Serilog;
 using System.Reflection;
 using Transfer.Application.Campaign.Email.Abstract;
 using Transfer.Application.Campaign.Email.Concrete;
-using Transfer.Application.Campaign.Queries.Response;
-using Transfer.Application.Transfer.ActionFilters;
-using Transfer.Application.Transfer.Commands.Request.DataTransferObjects;
 using Transfer.Application.Transfer.Validator.FluentValidation.RequestValidator;
 using Transfer.Business.Abstract;
 using Transfer.Business.Concrete;
@@ -16,16 +15,14 @@ using Transfer.Client;
 using Transfer.Core.CrosCuttingConcerns.Caching;
 using Transfer.Core.CrosCuttingConcerns.Caching.Microsoft;
 using Transfer.Core.CrosCuttingConcerns.Logging;
-using Transfer.Core.CrosCuttingConcerns.Logging.NLog;
 using Transfer.Core.CrosCuttingConcerns.MailService;
 using Transfer.DataAccess.Abstract;
 using Transfer.DataAccess.Concrete;
-using Transfer.Server.CQRS.Commands.Request;
-using Transfer.Server.CQRS.Commands.Response;
-using Transfer.Server.CQRS.Handlers.CommandHandler;
-using Transfer.Server.CQRS.Handlers.QueryHandler;
-using Transfer.Server.CQRS.Queries.Request;
 using Transfer.WebApi.Extensions;
+using Transfer.Core.CrosCuttingConcerns.Logging.Serilog;
+using System.Configuration;
+using PostSharp.Patterns.Diagnostics;
+using PostSharp.Patterns.Diagnostics.Backends.Serilog;
 
 Log.Logger = new LoggerConfiguration()
     .WriteTo.Console()
@@ -39,6 +36,7 @@ Log.Information("Starting web host");
 builder.Host.UseSerilog((ctx, lc) => lc
  .WriteTo.Console());
 
+CachingServices.DefaultBackend = new MemoryCachingBackend();
 
 builder.Services.AddControllers();
 builder.Services.AddFluentValidation(conf =>
@@ -54,6 +52,7 @@ var uriConfig = builder.Configuration["TransferClientBaseUri:BaseUri"];
 builder.Services.AddHttpClient<TransferClient>(config =>
 config.BaseAddress = new Uri(uriConfig)
 );
+
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -79,7 +78,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-app.ConfigureExpectionHandler();
+app.ConfigureExpectionHandler((ILogManager)Activator.CreateInstance(typeof(LogManager)));
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();

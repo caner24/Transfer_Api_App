@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
+using PostSharp.Patterns.Caching;
 using Transfer.Application.Campaign.Queries.Response;
 using Transfer.Application.Campaign.Queries.Response.DataTransferObjects;
 using Transfer.Business.Abstract;
@@ -12,6 +13,8 @@ using Transfer.Server.Mapping.AutoMapper;
 
 namespace Transfer.Server.CQRS.Handlers.QueryHandler
 {
+
+    [CacheConfiguration(ProfileName = "GetBookResponse")]
     public class GetBookQueryHandler : IRequestHandler<GetBookRequest, GetBookResponse>
     {
         private readonly TransferClient _transferClient;
@@ -23,7 +26,7 @@ namespace Transfer.Server.CQRS.Handlers.QueryHandler
             _transferClient = transferClient;
             _userService = userService;
         }
-
+        [Cache]
         public async Task<GetBookResponse> Handle(GetBookRequest request, CancellationToken cancellationToken)
         {
             var mapper = MapperConfig.ConfigureMappings();

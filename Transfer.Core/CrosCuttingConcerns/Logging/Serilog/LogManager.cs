@@ -1,11 +1,5 @@
 ﻿using Serilog;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Transfer.Core.CrosCuttingConcerns.Logging.NLog
+namespace Transfer.Core.CrosCuttingConcerns.Logging.Serilog
 {
     public class LogManager : ILogManager
     {

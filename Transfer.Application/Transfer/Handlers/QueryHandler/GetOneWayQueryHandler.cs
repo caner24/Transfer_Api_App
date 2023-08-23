@@ -1,18 +1,18 @@
 ﻿using MediatR;
+using PostSharp.Patterns.Caching;
 using Transfer.Application.Campaign.Queries.Response;
 using Transfer.Client;
 using Transfer.Client.Request;
-using Transfer.Core.CrosCuttingConcerns.Aspects.PostSharp.CacheAspetcs;
-using Transfer.Core.CrosCuttingConcerns.Aspects.PostSharp.LogAspects;
 using Transfer.Core.CrosCuttingConcerns.Caching;
 using Transfer.Core.CrosCuttingConcerns.Caching.Microsoft;
-using Transfer.Core.CrosCuttingConcerns.Logging.NLog;
+using Transfer.Core.CrosCuttingConcerns.Logging.Serilog;
 using Transfer.Server.CQRS.Queries.Request;
 using Transfer.Server.Mapping.AutoMapper;
 
 namespace Transfer.Server.CQRS.Handlers.QueryHandler
 {
 
+    [CacheConfiguration(ProfileName = "GetOneWayResponse")]
     public class GetOneWayQueryHandler : IRequestHandler<GetOneWayRequest, List<GetOneWayResponse>>
     {
         private readonly ICacheManager _cacheManager;
@@ -23,8 +23,7 @@ namespace Transfer.Server.CQRS.Handlers.QueryHandler
             _cacheManager = cacheManager;
         }
 
-        [CacheAspect(typeof(MemoryCacheManager))]
-        [LogAspect(typeof(LogManager))]
+        [Cache]
         public async Task<List<GetOneWayResponse>> Handle(GetOneWayRequest request, CancellationToken cancellationToken)
         {
             var mapper = MapperConfig.ConfigureMappings();

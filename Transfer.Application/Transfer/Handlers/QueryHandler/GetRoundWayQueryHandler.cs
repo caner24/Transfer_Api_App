@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using PostSharp.Patterns.Caching;
 using Transfer.Application.Campaign.Queries.Response;
 using Transfer.Client;
 using Transfer.Client.Request;
@@ -8,6 +9,7 @@ using Transfer.Server.Mapping.AutoMapper;
 
 namespace Transfer.Server.CQRS.Handlers.QueryHandler
 {
+    [CacheConfiguration(ProfileName = "GetRoundWayResponse")]
     public class GetRoundWayQueryHandler : IRequestHandler<GetRoundWayRequest, List<GetRoundWayResponse>>
     { 
         private readonly ICacheManager _cacheManager;
@@ -17,6 +19,7 @@ namespace Transfer.Server.CQRS.Handlers.QueryHandler
             _transferClient = transferClient;
             _cacheManager = cacheManager;
         }
+        [Cache]
         public async Task<List<GetRoundWayResponse>> Handle(GetRoundWayRequest request, CancellationToken cancellationToken)
         {
             var mapper = MapperConfig.ConfigureMappings();
