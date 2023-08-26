@@ -1,17 +1,32 @@
+# Start with a base image
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build-env
 
-FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
-WORKDIR /src
-COPY ["Transfer.WebApi.csproj", "./"]
-RUN dotnet restore "Transfer.WebApi.csproj"
-COPY . .
-WORKDIR "/src/"
-RUN dotnet build "Transfer.WebApi.csproj" -c Release -o /app/build
-
-
-FROM build AS publish
-RUN dotnet publish "Transfer.WebApi.csproj" -c Release -o /app/publish
-
-FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS final
+# Set the working directory
 WORKDIR /app
-COPY --from=publish /app/publish .
+
+# Copy the .csproj file
+COPY C:/Users/cnr24/source/repos/Transfer_Api_App/Transfer.WebApi/Transfer.WebApi.csproj .
+
+# Restore NuGet packages
+RUN dotnet restore
+
+# Copy the remaining source code
+COPY . .
+
+# Build the application
+RUN dotnet build -c Release -o out
+
+# Set the runtime image
+FROM mcr.microsoft.com/dotnet/aspnet:6.0
+
+# Set the working directory
+WORKDIR /app
+
+# Copy the built application from the build environment
+COPY --from=build-env /app/out .
+
+# Expose the necessary port
+EXPOSE 80
+
+# Set the entry point for the container
 ENTRYPOINT ["dotnet", "Transfer.WebApi.dll"]

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Transfer.Client.Request;
+using Transfer.Entity.DataTransferObjects.Stripe;
 using Transfer.Server.CQRS.Commands.Response;
 
 namespace Transfer.Application.Transfer.Commands.Request.DataTransferObjects

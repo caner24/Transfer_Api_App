@@ -7,12 +7,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <Compile Remove="Request\DataTransferObjects\**" />
+    <Compile Remove="Response\DatTransferObjects\**" />
+    <EmbeddedResource Remove="Request\DataTransferObjects\**" />
+    <EmbeddedResource Remove="Response\DatTransferObjects\**" />
+    <None Remove="Request\DataTransferObjects\**" />
+    <None Remove="Response\DatTransferObjects\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Request\DataTransferObjects\" />
-    <Folder Include="Response\DatTransferObjects\" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
 
   <ItemGroup>

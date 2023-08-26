@@ -16,8 +16,7 @@ namespace Transfer.Server.Mapping.AutoMapper
     {
         public MappingProfile()
         {
-            CreateMap<CreateUserRequest, User>();
-
+            CreateMap<CreateUserRequestDto, User>();
             CreateMap<CreateBookRequestDto, TransferServiceBookValidateRequest>();
             CreateMap<CreateBookRequestDto, TransferServiceCreateBookRequest>();
 

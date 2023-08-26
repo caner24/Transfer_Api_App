@@ -7,12 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Transfer\Queries\Request\DataTransferObjects\**" />
-    <EmbeddedResource Remove="Transfer\Queries\Request\DataTransferObjects\**" />
-    <None Remove="Transfer\Queries\Request\DataTransferObjects\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="12.0.1" />
     <PackageReference Include="FluentValidation" Version="11.5.1" />
     <PackageReference Include="MailKit" Version="4.1.0" />
@@ -21,6 +15,7 @@
     <PackageReference Include="MimeKit" Version="4.1.0" />
     <PackageReference Include="PostSharp.Patterns.Caching" Version="2023.0.7" />
     <PackageReference Include="PostSharp.Patterns.Caching.Redist" Version="2023.0.7" />
+    <PackageReference Include="Stripe.net" Version="42.2.0" />
   </ItemGroup>
 
   <ItemGroup>

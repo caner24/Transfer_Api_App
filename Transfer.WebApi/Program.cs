@@ -23,6 +23,9 @@ using Transfer.Core.CrosCuttingConcerns.Logging.Serilog;
 using System.Configuration;
 using PostSharp.Patterns.Diagnostics;
 using PostSharp.Patterns.Diagnostics.Backends.Serilog;
+using Stripe;
+using Transfer.Application.Transfer.Infrastructure;
+using Transfer.Application.Transfer.Infrastructure.EntityFramework;
 
 Log.Logger = new LoggerConfiguration()
     .WriteTo.Console()
@@ -46,7 +49,6 @@ builder.Services.AddFluentValidation(conf =>
 });
 
 
-
 var uriConfig = builder.Configuration["TransferClientBaseUri:BaseUri"];
 
 builder.Services.AddHttpClient<TransferClient>(config =>
@@ -59,7 +61,13 @@ builder.Services.AddSwaggerGen();
 var emailConfig = builder.Configuration
         .GetSection("EmailConfiguration")
         .Get<EmailConfiguration>();
+
 builder.Services.AddSingleton(emailConfig);
+
+
+builder.Services.AddStripeInfrastructure(builder.Configuration);
+
+
 builder.Services.AddTransient<IEmailService, EmailManager>();
 builder.Services.AddSingleton<IBookDal, BookDal>();
 builder.Services.AddSingleton<IBookService, BookManager>();
@@ -78,7 +86,10 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+
 app.ConfigureExpectionHandler((ILogManager)Activator.CreateInstance(typeof(LogManager)));
+
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();

@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Transfer.Client.Request;
+using Transfer.Entity.DataTransferObjects.Stripe;
 using Transfer.Server.CQRS.Commands.Response;
 
 namespace Transfer.Server.CQRS.Commands.Request
@@ -11,5 +12,7 @@ namespace Transfer.Server.CQRS.Commands.Request
         public int Children { get; set; }
         public int UserId { get; set; }
         public List<Tag> Tags { get; set; }
+
+
     }
 }

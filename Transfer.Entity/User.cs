@@ -7,7 +7,7 @@ using Transfer.Core.Entity;
 
 namespace Transfer.Entity
 {
-    public class User:IEntity
+    public class User : IEntity
     {
         public int Id { get; set; }
         public string Email { get; set; }
